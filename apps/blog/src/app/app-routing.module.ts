@@ -17,6 +17,7 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import('./features/blog/blog.module').then((m) => m.BlogModule),
   },
+  { path: 'about', loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule) },
 ];
 
 @NgModule({
