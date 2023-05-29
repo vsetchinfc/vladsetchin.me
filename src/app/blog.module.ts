@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { BlogComponent } from './blog.component';
   ],
   imports: [
     BrowserModule,
-    BlogRoutingModule
+    BlogRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [BlogComponent]
