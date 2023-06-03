@@ -6,12 +6,16 @@ import { BlogComponent } from './blog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { IdCardComponent } from './components/id-card/id-card.component';
 
 @NgModule({
   declarations: [
     BlogComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SideBarComponent,
+    IdCardComponent
   ],
   imports: [
     BrowserModule,
