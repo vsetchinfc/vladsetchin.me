@@ -1,0 +1,30 @@
+.bg-dark {
+  background-color: rgba(32, 97, 150, 1) !important;
+}
+
+.form-inline {
+  display: flex;
+  flex-direction: row;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav-item {
+  .nav-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: grey;
+    }
+  }
+}
+
+.jumbotron {
+  margin-bottom: 0rem;
+  background-color: rgba(178, 211, 239, 1);
+}
