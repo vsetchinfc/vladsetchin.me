@@ -1,1 +1,31 @@
-<p>footer works!</p>
+<div class="container">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-lg-2 col-sm-12">
+      <ul class="contact" v-if="contact">
+        <li class="contact-item">
+          <a [attr.href]="github_social_contact" target="_blank">
+            <i-feather name="github"></i-feather>
+          </a>
+        </li>
+        <li class="contact-item">
+          <a [attr.href]="twitter_social_contact" target="_blank">
+            <i-feather name="twitter"></i-feather>
+          </a>
+        </li>
+        <li class="contact-item">
+          <a [attr.href]="linkedin_social_contact" target="_blank">
+            <i-feather name="linkedin"></i-feather>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-lg-3 col-sm-12">
+      <ul class="copyright">
+        <li class="copyright-item">
+          <a href="">Copyright © 2021 {{ fullName }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
