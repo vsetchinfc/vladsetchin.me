@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BlogConfigService } from 'src/app/services';
 
 @Component({
   selector: 'blog-header',
@@ -6,7 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  constructor(private blogConfigService: BlogConfigService) {
+
+  }
+
   get blogName() {
-    return 'VLADSETCHIN.ME'; //this.blogConfigService.blogName;
+    return this.blogConfigService.blogName;
   }
 }
