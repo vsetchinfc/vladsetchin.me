@@ -24,4 +24,8 @@ export class FooterComponent {
   get twitter_social_contact() {
     return this.blogConfigService.twitter_social_contact;
   }
+
+  get blogVersion() {
+    return this.blogConfigService.blogVersion;
+  }
 }
