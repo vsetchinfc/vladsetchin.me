@@ -29,3 +29,6 @@ handleUnknownRoute: "/blog", 404:""
 
 
 
+handleUnknownRoute: "/blog", 404:""
+handleUnknownRoute: "/blog", 404:""
+handleUnknownRoute: "/blog/2023-06-20-blog/index.html", 404:""

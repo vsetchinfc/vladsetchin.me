@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "scully": "scully",
-    "scully:serve": "scully serve"
+    "scully:serve": "scully serve",
+    "jam": "ng build && npm run scully -- --scanRoutes && npm run scully serve"
   },
   "private": true,
   "dependencies": {
