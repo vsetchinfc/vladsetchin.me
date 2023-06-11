@@ -1,0 +1,11 @@
+identifier: lci4pdw4d2u87cg3
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: vladsetchin.me
+homeFolder: C:\dev\1-vladsetchin.me\vladsetchin.me
+distFolder: ./dist/vladsetchin.me
+outDir: C:\dev\1-vladsetchin.me\vladsetchin.me\dist\static
+handle404: ''
+allowErrorCollect: true

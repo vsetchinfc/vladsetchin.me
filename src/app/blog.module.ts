@@ -10,6 +10,7 @@ import { IdCardComponent } from './components/id-card/id-card.component';
 import { IconsModule } from './icons/icons.module';
 import { BlogConfigService } from './services';
 import { HttpClientModule } from '@angular/common/http';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 const BLOG_CONFIG_PROVIDER = [
   {
@@ -39,7 +40,8 @@ const PROVIDERS = [...BLOG_CONFIG_PROVIDER];
     IconsModule,
     BrowserModule,
     BlogRoutingModule,
-    NgbModule
+    NgbModule,
+    ScullyLibModule
   ],
   providers: [...PROVIDERS],
   bootstrap: [BlogComponent]
