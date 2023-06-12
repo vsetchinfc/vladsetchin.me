@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BlogPagesComponent } from './components/blog-pages/blog-pages.component';
+import { BlogListPageComponent } from './components/blog-pages/blog-list-page.component';
 
 const routes: Routes = [
   {
     path: ':slug',
-    component: BlogPagesComponent,
+    component: BlogListPageComponent,
   },
   {
     path: '**',
-    component: BlogPagesComponent,
+    component: BlogListPageComponent,
   }
 ];
 
