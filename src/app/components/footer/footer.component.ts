@@ -7,22 +7,10 @@ import { BlogConfigService } from 'src/app/services';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent {
-  constructor(private blogConfigService: BlogConfigService) {}
+  constructor(private blogConfigService: BlogConfigService) { }
 
   get fullName() {
     return this.blogConfigService.fullName;
-  }
-
-  get github_social_contact() {
-    return this.blogConfigService.github_social_contact;
-  }
-
-  get linkedin_social_contact() {
-    return this.blogConfigService.linkedin_social_contact;
-  }
-
-  get twitter_social_contact() {
-    return this.blogConfigService.twitter_social_contact;
   }
 
   get blogVersion() {

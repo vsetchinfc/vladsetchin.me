@@ -1,0 +1,23 @@
+:host {
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .contact-item {
+      flex: 1;
+
+      .contact-link:hover {
+        color: grey;
+      }
+    }
+  }
+}

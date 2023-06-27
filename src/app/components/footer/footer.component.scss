@@ -11,17 +11,6 @@
     padding: 0;
   }
 
-  .contact {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-
-    .contact-item {
-      flex: 1;
-    }
-  }
-
   .copyright {
     display: flex;
     justify-content: center;
@@ -35,22 +24,18 @@
 
       a {
         font-size: 16px;
+        color: #ffffff;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: grey;
+        }
       }
 
       &:last-child {
         border-right: none;
       }
-    }
-  }
-
-  a {
-    font-size: 12px;
-    color: #ffffff;
-    text-decoration: none;
-    transition: color 0.3s;
-
-    &:hover {
-      color: grey;
     }
   }
 }
