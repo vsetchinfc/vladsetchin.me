@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 export interface BlogConfig {
   blog_version: string;
   full_name: string;
+  occupation: string;
   blog_name: string;
   github_social_contact: string;
   twitter_social_contact: string;
@@ -36,19 +37,23 @@ export class BlogConfigService {
     return this.blogConfig.full_name;
   }
 
+  get occupation() {
+    return this.blogConfig.occupation;
+  }
+
   get blogName() {
     return this.blogConfig.blog_name;
   }
 
-  get twitter_social_contact() {
+  get twitterSocialContact() {
     return this.blogConfig.twitter_social_contact;
   }
 
-  get github_social_contact() {
+  get githubSocialContact() {
     return this.blogConfig.github_social_contact;
   }
 
-  get linkedin_social_contact() {
+  get linkedinSocialContact() {
     return this.blogConfig.linkedin_social_contact;
   }
 }

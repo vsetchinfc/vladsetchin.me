@@ -9,19 +9,11 @@ import { BlogConfigService } from 'src/app/services';
 export class SocialLinksComponent {
   @Input() linkColour!: string;
 
+  githubSocialContact = this.blogConfigService.githubSocialContact;
+  linkedinSocialContact = this.blogConfigService.linkedinSocialContact;
+  twitterSocialContact = this.blogConfigService.twitterSocialContact;
+
   constructor(private blogConfigService: BlogConfigService) {
     this.linkColour = "rgba(32, 97, 150, 1)";
-  }
-
-  get github_social_contact() {
-    return this.blogConfigService.github_social_contact;
-  }
-
-  get linkedin_social_contact() {
-    return this.blogConfigService.linkedin_social_contact;
-  }
-
-  get twitter_social_contact() {
-    return this.blogConfigService.twitter_social_contact;
   }
 }
