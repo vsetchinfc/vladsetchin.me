@@ -1,0 +1,30 @@
+<ul class="contact" v-if="contact">
+  <li class="contact-item">
+    <a
+      [attr.href]="githubSocialContact"
+      target="_blank"
+      [style.color]="linkColour"
+    >
+      <i-feather name="github" class="contact-link"></i-feather>
+    </a>
+  </li>
+  <li class="contact-item">
+    <a
+      [attr.href]="twitterSocialContact"
+      target="_blank"
+      [style.color]="linkColour"
+      class="contact-link"
+    >
+      <i-feather name="twitter" class="contact-link"></i-feather>
+    </a>
+  </li>
+  <li class="contact-item">
+    <a
+      [attr.href]="linkedinSocialContact"
+      target="_blank"
+      [style.color]="linkColour"
+    >
+      <i-feather name="linkedin" class="contact-link"></i-feather>
+    </a>
+  </li>
+</ul>
