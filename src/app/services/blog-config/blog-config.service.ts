@@ -22,7 +22,7 @@ export class BlogConfigService {
 
   loadBlogConfig() {
     return this.http
-      .get('/assets/config.json')
+      .get('./assets/config.json')
       .toPromise()
       .then((data) => {
         this.blogConfig = <BlogConfig>data;
