@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsListComponent } from './projects-list/projects-list.component';
+import { SmulePlayerComponent } from './projects/smule-player/smule-player.component';
 
 
 @NgModule({
   declarations: [
-    ProjectsListComponent
+    ProjectsListComponent,
+    SmulePlayerComponent
   ],
   imports: [
     CommonModule,
