@@ -7,11 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ProjectsListComponent
-  },
-  {
-    path: 'smule-player',
-    component: SmulePlayerComponent
-  }
+  }//,
+  // {
+  //   path: 'smule-player',
+  //   component: SmulePlayerComponent
+  // }
 ];
 
 @NgModule({

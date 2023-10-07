@@ -14,20 +14,14 @@ const routes: Routes = [
       },
       {
         path: 'projects',
-        children: [
-          {
-            path: '', component: ProjectsListComponent
-          },
-          {
-            path: 'smule-player',
-            component: SmulePlayerComponent
-          }
-        ]
-        //loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule),
-      }
+        loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule),
+      },
     ]
+  },
+  {
+    path: 'projects/smule-player',
+    component: SmulePlayerComponent
   }
-
 ];
 
 @NgModule({
