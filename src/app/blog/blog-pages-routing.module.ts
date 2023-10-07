@@ -4,11 +4,11 @@ import { BlogListPageComponent } from './components/blog-pages/blog-list-page.co
 
 const routes: Routes = [
   {
-    path: './:slug',
+    path: ':slug',
     component: BlogListPageComponent,
   },
   {
-    path: './**',
+    path: '**',
     component: BlogListPageComponent,
   }
 ];
