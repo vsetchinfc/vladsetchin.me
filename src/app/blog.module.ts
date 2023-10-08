@@ -12,6 +12,7 @@ import { BlogConfigService } from './services';
 import { HttpClientModule } from '@angular/common/http';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
+import { MainComponent } from './main/main.component';
 
 const BLOG_CONFIG_PROVIDER = [
   {
@@ -35,7 +36,8 @@ const PROVIDERS = [...BLOG_CONFIG_PROVIDER];
     FooterComponent,
     SideBarComponent,
     IdCardComponent,
-    SocialLinksComponent
+    SocialLinksComponent,
+    MainComponent
   ],
   imports: [
     HttpClientModule,

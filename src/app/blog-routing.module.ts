@@ -1,20 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { SmulePlayerComponent } from './projects/projects/smule-player/smule-player.component';
-import { BlogComponent } from './blog.component';
+import { HomeComponent } from './home/home.component';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'blog',
-        loadChildren: () => import('./blog/blog-pages.module').then(m => m.BlogPagesModule),
-      },
-      {
-        path: 'projects',
-        loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule),
+        path: '',
+        component: MainComponent,
+        children: [
+          {
+            path: '',
+            component: HomeComponent
+          },
+          {
+            path: 'blog',
+            loadChildren: () => import('./blog/blog-pages.module').then(m => m.BlogPagesModule),
+          },
+          {
+            path: 'projects',
+            loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule),
+          },
+        ]
       },
     ]
   },
