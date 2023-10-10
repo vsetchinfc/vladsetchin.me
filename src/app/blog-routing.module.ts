@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SmulePlayerComponent } from './projects/projects/smule-player/smule-player.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
+import { ReactionTrainerComponent, SmulePlayerComponent } from './projects/projects';
 
 const routes: Routes = [
   {
@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'projects/smule-player',
     component: SmulePlayerComponent
+  },
+  {
+    path: 'projects/reaction-trainer',
+    component: ReactionTrainerComponent
   }
 ];
 
