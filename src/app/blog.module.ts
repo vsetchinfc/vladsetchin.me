@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { SocialLinksComponent } from './components/social-links/social-links.component';
 import { MainComponent } from './main/main.component';
+import { AboutComponent } from './about/about.component';
 
 const BLOG_CONFIG_PROVIDER = [
   {
@@ -37,7 +38,8 @@ const PROVIDERS = [...BLOG_CONFIG_PROVIDER];
     SideBarComponent,
     IdCardComponent,
     SocialLinksComponent,
-    MainComponent
+    MainComponent,
+    AboutComponent
   ],
   imports: [
     HttpClientModule,

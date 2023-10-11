@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
 import { ReactionTrainerComponent, SmulePlayerComponent } from './projects/projects';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'projects/reaction-trainer',
     component: ReactionTrainerComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
