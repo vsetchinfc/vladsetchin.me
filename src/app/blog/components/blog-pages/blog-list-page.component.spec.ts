@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlogListPageComponent } from './blog-list-page.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('BlogPagesComponent', () => {
   let component: BlogListPageComponent;
@@ -8,7 +9,12 @@ describe('BlogPagesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BlogListPageComponent]
+      declarations: [
+        BlogListPageComponent
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
     });
     fixture = TestBed.createComponent(BlogListPageComponent);
     component = fixture.componentInstance;
