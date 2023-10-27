@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface BlogConfig {
-  blog_version: string;
-  full_name: string;
+  blogVersion: string;
+  fullName: string;
   occupation: string;
-  blog_name: string;
-  github_social_contact: string;
-  twitter_social_contact: string;
-  linkedin_social_contact: string;
+  blogName: string;
+  githubSocialContact: string;
+  twitterSocialContact: string;
+  linkedinSocialContact: string;
 }
 
 @Injectable({
@@ -16,7 +16,7 @@ export interface BlogConfig {
 })
 export class BlogConfigService {
 
-  private blogConfig!: BlogConfig;
+  static blogConfig: BlogConfig = {} as BlogConfig;
 
   constructor(private http: HttpClient) { }
 
@@ -25,35 +25,7 @@ export class BlogConfigService {
       .get('./assets/config.json')
       .toPromise()
       .then((data) => {
-        this.blogConfig = <BlogConfig>data;
+        BlogConfigService.blogConfig = <BlogConfig>data;
       });
-  }
-
-  get blogVersion() {
-    return this.blogConfig.blog_version;
-  }
-
-  get fullName() {
-    return this.blogConfig.full_name;
-  }
-
-  get occupation() {
-    return this.blogConfig.occupation;
-  }
-
-  get blogName() {
-    return this.blogConfig.blog_name;
-  }
-
-  get twitterSocialContact() {
-    return this.blogConfig.twitter_social_contact;
-  }
-
-  get githubSocialContact() {
-    return this.blogConfig.github_social_contact;
-  }
-
-  get linkedinSocialContact() {
-    return this.blogConfig.linkedin_social_contact;
   }
 }

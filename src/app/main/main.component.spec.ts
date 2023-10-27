@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MainComponent } from './main.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 

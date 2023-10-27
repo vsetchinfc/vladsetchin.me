@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BlogConfigService } from './services';
 
 @Component({
   selector: 'blog-root',

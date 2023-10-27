@@ -7,11 +7,7 @@ import { BlogConfigService } from 'src/app/services';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  constructor(private blogConfigService: BlogConfigService) {
-
-  }
-
   get blogName() {
-    return this.blogConfigService.blogName;
+    return BlogConfigService.blogConfig.blogName;
   }
 }

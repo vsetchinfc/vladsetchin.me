@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SocialLinksComponent } from './social-links.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('SocialLinksComponent', () => {
   let component: SocialLinksComponent;
@@ -8,7 +8,12 @@ describe('SocialLinksComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SocialLinksComponent]
+      declarations: [
+        SocialLinksComponent
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ]
     });
     fixture = TestBed.createComponent(SocialLinksComponent);
     component = fixture.componentInstance;

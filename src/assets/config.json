@@ -1,9 +1,9 @@
 {
-  "blog_version": "1.0.0",
-  "full_name": "Vlad Setchin",
+  "blogVersion": "1.0.0",
+  "fullName": "Vlad Setchin",
   "occupation": "Full Stack Software Engineer",
-  "blog_name": "VLADSETCHIN.ME",
-  "github_social_contact": "https://github.com/vsetchinfc",
-  "twitter_social_contact": "https://twitter.com/vladsetchin",
-  "linkedin_social_contact": "https://www.linkedin.com/in/vladsetchin"
+  "blogName": "VLADSETCHIN.ME",
+  "githubSocialContact": "https://github.com/vsetchinfc",
+  "twitterSocialContact": "https://twitter.com/vladsetchin",
+  "linkedinSocialContact": "https://www.linkedin.com/in/vladsetchin"
 }

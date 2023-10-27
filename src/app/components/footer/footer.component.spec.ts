@@ -3,10 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FooterComponent } from './footer.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { BlogConfigService } from 'src/app/services';
-
-class MockBlogConfigService {
-  blogName = 'Mocked Blog Name';
-}
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -20,7 +17,10 @@ describe('FooterComponent', () => {
       providers: [
         HttpClient,
         HttpHandler,
-        { provide: BlogConfigService, useClass: MockBlogConfigService }
+        BlogConfigService
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
       ]
     });
     fixture = TestBed.createComponent(FooterComponent);
