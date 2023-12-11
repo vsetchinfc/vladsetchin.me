@@ -6,14 +6,15 @@ import { ProjectsListComponent } from './projects-list/projects-list.component';
 import { SmulePlayerComponent } from './projects/smule-player/smule-player.component';
 import { HomeComponent } from '../home/home.component';
 import { ReactionTrainerComponent } from './projects/reaction-trainer/reaction-trainer.component';
-
+import { GematrixCalculatorComponent } from './projects/gematrix-calculator/gematrix-calculator.component';
 
 @NgModule({
   declarations: [
     ProjectsListComponent,
     SmulePlayerComponent,
     HomeComponent,
-    ReactionTrainerComponent
+    ReactionTrainerComponent,
+    GematrixCalculatorComponent
   ],
   imports: [
     CommonModule,
