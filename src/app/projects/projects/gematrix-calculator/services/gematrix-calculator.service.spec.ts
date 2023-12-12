@@ -20,7 +20,9 @@ describe('GematrixCalculatorService', () => {
 
     expect(result.ordinal).toEqual(21);
     expect(result.entry).toEqual(entry);
-    expect(result.reverseOrdinal).toEqual(33);
+    expect(result.reverse).toEqual(33);
+    expect(result.reduction).toEqual(3);
+    expect(result.reverseReduction).toEqual(15);
   });
 
   it('should calculate the number for specified line string - Ба', () => {
@@ -29,6 +31,8 @@ describe('GematrixCalculatorService', () => {
 
     expect(result.ordinal).toEqual(3);
     expect(result.entry).toEqual(entry);
-    expect(result.reverseOrdinal).toEqual(65);
+    expect(result.reverse).toEqual(65);
+    expect(result.reduction).toEqual(3);
+    expect(result.reverseReduction).toEqual(11);
   });
 });

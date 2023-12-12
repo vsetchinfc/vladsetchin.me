@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { GematrixCalculatorBaseService, GematrixLetterIndex } from './gematrix-calculator-base.service';
+import { GematrixCalculatorBaseService } from './gematrix-calculator-base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GematrixCalculatorRUService extends GematrixCalculatorBaseService {
+  // Russian Alphabet
+  russianLetters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+
   constructor() {
     super();
 
-    // Russian Alphabet
-    const russianLetters = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
-    const russianLettersReverseOrder = russianLetters.split('').reverse().join('');
+    const russianLettersReverseOrder = this.russianLetters.split('').reverse().join('');
 
-    this.letters = this.buildListOfLetters(russianLetters);
+    this.letters = this.buildListOfLetters(this.russianLetters);
     this.lettersReverseOrder = this.buildListOfLetters(russianLettersReverseOrder);
   }
 }

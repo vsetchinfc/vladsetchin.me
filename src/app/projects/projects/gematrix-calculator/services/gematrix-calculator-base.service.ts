@@ -1,8 +1,32 @@
 import { Injectable } from '@angular/core';
 
-export interface GematrixLetterIndex {
-  index: number;
-  letter: string;
+export class GematrixLetterIndex {
+  _index: string = '';
+  _letter: string = '';
+
+  constructor(index: string, letter: string) {
+    this._index = index;
+    this._letter = letter
+  }
+
+  getIndex(): number {
+    return +this._index;
+  }
+
+  getLetter(): string {
+    return this._letter;
+  }
+
+  // calculate reduced value of char index
+  // '14' -> 1 + 4 = 5
+  getReducedIndex(): number {
+    var numbers = this._index.split('');
+    let sum: number = 0;
+
+    numbers.forEach(n => sum += +n);
+
+    return sum;
+  }
 }
 
 @Injectable({
@@ -18,7 +42,7 @@ export class GematrixCalculatorBaseService {
     let lettersArray: GematrixLetterIndex[] = [];
 
     for (let i = 0; i < letters.length; i++) {
-      lettersArray.push({ letter: letters[i], index: i + 1 });
+      lettersArray.push(new GematrixLetterIndex('' + (i + 1), letters[i]));
     }
 
     return lettersArray;
@@ -32,13 +56,33 @@ export class GematrixCalculatorBaseService {
     return this.getCharArrayIndex(char, this.letters);
   }
 
-  private getCharArrayIndex(char: string, letters: GematrixLetterIndex[]): number {
+  getReductionCharIndex(char: string) {
+    return this.getReductionCharArrayIndex(char, this.letters);
+  }
+
+  getReverseReductionCharIndex(char: string) {
+    return this.getReductionCharArrayIndex(char, this.lettersReverseOrder);
+  }
+
+  private getCharArrayIndex(char: string, letterIndexes: GematrixLetterIndex[]): number {
     char = char.toUpperCase();
 
-    var index = letters.find(c => c.letter === char)?.index;
+    var index = letterIndexes.find(c => c.getLetter() === char)?.getIndex();
 
     if (index) {
-      return index;
+      return index;  // return as number
+    }
+
+    return 0;
+  }
+
+  private getReductionCharArrayIndex(char: string, letterIndexes: GematrixLetterIndex[]): number {
+    char = char.toUpperCase();
+
+    var index = letterIndexes.find(c => c.getLetter() === char)?.getReducedIndex();
+
+    if (index) {
+      return index;  // return as number
     }
 
     return 0;

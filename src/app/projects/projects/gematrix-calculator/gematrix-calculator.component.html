@@ -29,13 +29,17 @@
               <th style="border: solid">Entry</th>
               <th style="border: solid">Ordinal</th>
               <th style="border: solid">Reverse Ordinal</th>
+              <th style="border: solid">Reduction</th>
+              <th style="border: solid">Reverse Reduction</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let result of calculationResults">
               <td style="border: solid">{{ result.entry }}</td>
               <td style="border: solid">{{ result.ordinal }}</td>
-              <td style="border: solid">{{ result.reverseOrdinal }}</td>
+              <td style="border: solid">{{ result.reverse }}</td>
+              <td style="border: solid">{{ result.reduction }}</td>
+              <td style="border: solid">{{ result.reverseReduction }}</td>
             </tr>
           </tbody>
         </table>
