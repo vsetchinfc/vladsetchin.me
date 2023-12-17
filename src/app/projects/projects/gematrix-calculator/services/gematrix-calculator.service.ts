@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { GematrixCalculatorRUService } from './gematrix-calculator-ru.service';
-import { GematrixCalculatorENService } from './gematrix-calculator-en.service';
+import { OrdinalCipherService } from './ciphers/ordinal-cipher.service';
+import { ReductionCipherService } from './ciphers/reduction-cipher.service';
+import { ReverseCipherService } from './ciphers/reverse-cipher.service';
+import { ReverseReductionCipherService } from './ciphers/reverse-reduction-cipher.service';
 
 export interface GematrixCalculationResult {
   entry: string;
@@ -15,8 +17,10 @@ export interface GematrixCalculationResult {
 })
 export class GematrixCalculatorService {
 
-  constructor(private ruGematrixCalculator: GematrixCalculatorRUService,
-    private enGematrixCalculator: GematrixCalculatorENService) { }
+  constructor(private ordinalCipher: OrdinalCipherService,
+    private reductionCipher: ReductionCipherService,
+    private reverseCipher: ReverseCipherService,
+    private reverseReductionCipher: ReverseReductionCipherService) { }
 
   ///
   /// Return calculated result for a whole line
@@ -31,36 +35,17 @@ export class GematrixCalculatorService {
       const charList = word.split('');
 
       charList.forEach(char => {
-        // check if it is russian
-        if (this.ruGematrixCalculator.russianLetters.split('').find(l => l === char.toUpperCase())) {
-          // it is Russian! 
-          var ordinalIndex = this.ruGematrixCalculator.getCharIndex(char)
-          ordinal += ordinalIndex;
+        var ordinalIndex = this.ordinalCipher.getCharIndex(char);
+        ordinal += ordinalIndex;
 
-          var reverseOrdinalIndex = this.ruGematrixCalculator.getReverseCharIndex(char);
-          reverse += reverseOrdinalIndex;
+        var reductionIndex = this.reductionCipher.getCharIndex(char);
+        reduction += reductionIndex;
 
-          var reductionIdex = this.ruGematrixCalculator.getReductionCharIndex(char);
-          reduction += reductionIdex;
+        var reverseIndex = this.reverseCipher.getCharIndex(char);
+        reverse += reverseIndex;
 
-          var reverseReductionIndex = this.ruGematrixCalculator.getReverseReductionCharIndex(char);
-          reverseReduction += reverseReductionIndex;
-        } else {
-          // check if it is a date
-
-          // working with english here
-          var ordinalIndex = this.enGematrixCalculator.getCharIndex(char);
-          ordinal += ordinalIndex;
-
-          var reverseOrdinalIndex = this.enGematrixCalculator.getReverseCharIndex(char);
-          reverse += reverseOrdinalIndex;
-
-          var reductionIdex = this.enGematrixCalculator.getReductionCharIndex(char);
-          reduction += reductionIdex;
-
-          var reverseReductionIndex = this.enGematrixCalculator.getReverseReductionCharIndex(char);
-          reverseReduction += reverseReductionIndex;
-        }
+        var reverseReductionIndex = this.reverseReductionCipher.getCharIndex(char);
+        reverseReduction += reverseReductionIndex;
       })
     });
 
