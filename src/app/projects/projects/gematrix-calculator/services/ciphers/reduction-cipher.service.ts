@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlphabetConstants, CipherType } from '../../common';
+import { CipherType } from '../../common';
 import { OrdinalCipherService } from './ordinal-cipher.service';
 
 @Injectable({

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { GematrixLetterIndex } from '../../models';
-import { AlphabetConstants, CipherType } from '../../common';
+import { CipherType } from '../../common';
+import { LocaliseService } from '../../common/services/localise.service';
+import { Localise } from '../../common/enums/localise.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -39,13 +41,21 @@ export class CipherService {
   }
 
   getCharIndex(char: string): number {
-    if (AlphabetConstants.EN_Letters.split('').find(l => l === char.toUpperCase())) {
-      return +this.getCharArrayIndex(char, this.enLetters);
-    } else if (AlphabetConstants.RU_Letters.split('').find(l => l === char.toUpperCase())) {
-      return +this.getCharArrayIndex(char, this.ruLetters);
+    let index = 0;
+
+    switch (LocaliseService.getCharLocalisation(char)) {
+      case Localise.EN:
+        index = +this.getCharArrayIndex(char, this.enLetters);
+        break;
+      case Localise.RU:
+        index = +this.getCharArrayIndex(char, this.ruLetters);
+        break;
+      case Localise.None:
+        index = 0;
+        break;
     }
 
-    return 0;
+    return index;
   }
 
   getIndexReduction(index: string): number {
