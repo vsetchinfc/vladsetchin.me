@@ -7,21 +7,19 @@ import { GematrixCalculatorService, GematrixCalculationResult } from './services
   styleUrls: ['./gematrix-calculator.component.scss']
 })
 export class GematrixCalculatorComponent {
-  calculationResults: GematrixCalculationResult[] = [];
+  calculationResult: GematrixCalculationResult = {} as GematrixCalculationResult;
 
   constructor(private gematrixCalculator: GematrixCalculatorService
   ) {
   }
 
   onTextChange(event: Event): void {
-    this.calculationResults = [];
     const textValue = (event.target as HTMLTextAreaElement).value;
 
     textValue.split('\n').forEach(line => {
       console.log('Text line:', line);
 
-      var result = this.gematrixCalculator.calculate(line);
-      this.calculationResults.push(result);
+      this.calculationResult = this.gematrixCalculator.calculate(line);
     });
   }
 }
