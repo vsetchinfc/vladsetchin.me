@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,18 @@ export const routes: Routes = [
   },
   //]
   //},
+  // {
+  //   path: 'projects/smule-player',
+  //   component: SmulePlayerComponent
+  // },
+  // {
+  //   path: 'projects/reaction-trainer',
+  //   component: ReactionTrainerComponent
+  // },
+  {
+    path: 'about',
+    component: AboutComponent
+  }
 ];
 
 @NgModule({

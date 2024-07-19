@@ -7,12 +7,14 @@ import { RouterOutlet } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
+import { AboutComponent } from "./about/about.component";
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		MainComponent,
-		BlogComponent
+		BlogComponent,
+		AboutComponent
 	],
 	imports: [
 		HttpClientModule,
