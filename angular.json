@@ -92,6 +92,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "buildTarget": "vladsetchin.me:build:production",
+            "repo": "https://github.com/vsetchinfc/vladsetchin.me.git"
+          }
         }
       }
     }
