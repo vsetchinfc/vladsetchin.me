@@ -1,0 +1,1 @@
+import{b as o,d as n,e as i,g as p}from"./chunk-QJCHVQDU.js";var a=(()=>{class e{static \u0275fac=function(t){return new(t||e)};static \u0275cmp=o({type:e,selectors:[["app-blog"]],decls:2,vars:0,template:function(t,m){t&1&&(n(0,"p"),p(1,"blog works!"),i())}})}return e})();export{a};
