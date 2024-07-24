@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { MainComponent } from "./main/main.component";
-import { BlogComponent } from "./blog/blog/blog.component";
-import { BlogRoutingModule } from "./blog/blog-routing.module";
+import { BlogListComponent } from "./blog/blog-list/blog-list.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterOutlet } from "@angular/router";
 import { AppComponent } from "./app.component";
@@ -13,7 +12,7 @@ import { AboutComponent } from "./about/about.component";
 	declarations: [
 		AppComponent,
 		MainComponent,
-		BlogComponent,
+		BlogListComponent,
 		AboutComponent
 	],
 	imports: [
