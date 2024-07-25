@@ -1,16 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { BlogConfigService } from './blog-config.service';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('BlogConfigService', () => {
   let service: BlogConfigService;
-  let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
       ],
       providers: [
         HttpClient,
@@ -19,7 +16,6 @@ describe('BlogConfigService', () => {
       ]
     });
     service = TestBed.inject(BlogConfigService);
-    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
