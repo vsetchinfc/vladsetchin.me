@@ -1,0 +1,33 @@
+{
+	"blogMDsPath": "./assets/blog",
+	"blogPages": [
+		{
+			"id": "poc-markdown-blog-support",
+			"title": "POC - Markdown Blog Support for Angular Project",
+			"description": "This is a proof of the concept project to see how to achieve it.",
+			"postImage": "",
+			"mdFileName": "poc-markdown-blog-support.md",
+			"publishedDate": "2024-07-25",
+			"authorName": "Vlad Setchin",
+			"published": true,
+			"tags": [
+				"angular",
+				"advanced"
+			]
+		},
+		{
+			"id": "poc-blog-data-service",
+			"title": "POC - Implementation of the Blog Data Service",
+			"description": "Implementation of the Blog Data Service.",
+			"postImage": "",
+			"mdFileName": "poc-blog-data-service.md",
+			"publishedDate": "2024-07-25",
+			"authorName": "Vlad Setchin",
+			"published": true,
+			"tags": [
+				"angular",
+				"advanced"
+			]
+		}
+	]
+}
