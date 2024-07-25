@@ -1,1 +1,3 @@
-<p>blog list works!</p>
+<div *ngFor="let blogPage of blogPages">
+  <a [href]="getBlogPageUrl(blogPage.id)">{{ blogPage.title }}</a>
+</div>

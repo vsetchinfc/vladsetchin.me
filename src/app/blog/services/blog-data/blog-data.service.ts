@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-interface BlogPageData {
+export interface BlogPageData {
   id: string,
   title: string,
   description: string,
@@ -13,7 +13,7 @@ interface BlogPageData {
   tags: string[]
 }
 
-interface BlogData {
+export interface BlogData {
   blogMDsPath: string,         // path to all markdown files used in blog
   numberOfFeaturedPosts: number,
   numberOfPostsPerPage: number,
@@ -24,7 +24,7 @@ interface BlogData {
   providedIn: 'root'
 })
 export class BlogDataService {
-  static blogData: BlogData = {} as BlogData;
+  private static blogData: BlogData = {} as BlogData;
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +35,13 @@ export class BlogDataService {
       .then((data) => {
         BlogDataService.blogData = <BlogData>data;
       });
+  }
+
+  getBlogPagesData(): BlogPageData[] {
+    if (BlogDataService.blogData?.blogPages) {
+      return BlogDataService.blogData.blogPages;
+    }
+
+    return [];
   }
 }
