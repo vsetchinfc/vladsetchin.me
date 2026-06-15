@@ -1,17 +1,37 @@
 ---
 import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+import { SITE } from '../data/site';
 
 export interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  pubDate?: Date;
+  jsonLd?: string;
 }
 
-const { 
-  title = 'Vlad Setchin ÔÇö Software Engineer', 
-  description = 'Personal website and blog of Vlad Setchin'
+const {
+  title = SITE.title,
+  description = SITE.description,
+  ogImage,
+  ogType = 'website',
+  pubDate,
+  jsonLd,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+
+// JSON-LD structured data
+const personSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.title,
+  url: SITE.url,
+  sameAs: [SITE.github, SITE.linkedin, SITE.twitter],
+  jobTitle: SITE.tagline,
+});
 ---
 
 <!doctype html>
@@ -20,10 +40,23 @@ const currentPath = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    
-    <title>{title}</title>
-    <meta name="description" content={description} />
+
+    <SEOHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+      pubDate={pubDate}
+    />
+
+    <!-- JSON-LD: Person (home page) -->
+    {currentPath === '/' && (
+      <script type="application/ld+json" set:html={personSchema} />
+    )}
+    <!-- JSON-LD: custom (blog posts, etc.) -->
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
     
     <!-- Anti-flash theme script: sets theme before first paint -->
     <script is:inline>
