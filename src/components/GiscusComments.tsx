@@ -35,7 +35,7 @@ export default function GiscusComments({ theme = 'dark' }: GiscusCommentsProps) 
     script.async = true;
 
     container.appendChild(script);
-  }, [isConfigured]);
+  }, [isConfigured, theme]);
 
   // Sync theme when it changes
   useEffect(() => {
