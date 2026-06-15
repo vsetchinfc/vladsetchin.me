@@ -1,26 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ThemeToggle from '../components/ThemeToggle';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Skills from '../components/sections/Skills.astro';
+import Contact from '../components/sections/Contact.astro';
 ---
 
-<Layout 
-  title="Vlad Setchin — Software Engineer" 
-  description="Personal website and blog of Vlad Setchin"
+<Layout
+  title="Vlad Setchin — Software Engineer & Consultant"
+  description="Software Engineer with expertise in Angular, TypeScript, and cloud technologies. Personal site, blog, and portfolio."
 >
   <ThemeToggle slot="theme-toggle" client:load />
-  
-  <div class="container" style="padding-top: var(--space-16); padding-bottom: var(--space-16);">
-    <h1 style="text-align: center; margin-bottom: var(--space-8);">
-      Welcome to <span style="color: var(--color-accent);">vladsetchin.me</span>
-    </h1>
-    
-    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
-      <p style="font-size: var(--text-lg); margin-bottom: var(--space-6);">
-        This is a placeholder home page for the new Astro-powered site.
-      </p>
-      <p style="color: var(--color-text-muted);">
-        Content sections (hero, about, skills, contact) will be added in Task 2.
-      </p>
-    </div>
-  </div>
+  <Hero />
+  <About />
+  <Skills />
+  <Contact />
 </Layout>
