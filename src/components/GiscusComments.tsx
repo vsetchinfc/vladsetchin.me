@@ -8,10 +8,12 @@ interface GiscusCommentsProps {
 
 export default function GiscusComments({ theme = 'dark' }: GiscusCommentsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isConfigured =
+    !GISCUS_CONFIG.repoId.includes('TODO_REPLACE') && !GISCUS_CONFIG.categoryId.includes('TODO_REPLACE');
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container || !isConfigured) return;
 
     // Remove existing script to avoid duplicates on re-renders
     const existing = container.querySelector('script[src*="giscus"]');
@@ -33,7 +35,7 @@ export default function GiscusComments({ theme = 'dark' }: GiscusCommentsProps) 
     script.async = true;
 
     container.appendChild(script);
-  }, []);
+  }, [isConfigured]);
 
   // Sync theme when it changes
   useEffect(() => {
@@ -53,6 +55,11 @@ export default function GiscusComments({ theme = 'dark' }: GiscusCommentsProps) 
       <h2 style={{ fontSize: 'var(--text-xl)', marginBottom: '1.5rem', color: 'var(--color-heading)' }}>
         Comments
       </h2>
+      {!isConfigured && (
+        <p style={{ color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)' }}>
+          Comments are disabled until Giscus repoId/categoryId are configured.
+        </p>
+      )}
       <div ref={containerRef} />
     </section>
   );
