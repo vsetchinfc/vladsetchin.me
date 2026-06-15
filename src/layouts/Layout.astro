@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'Vlad Setchin — Software Engineer', 
+  description = 'Personal website and blog of Vlad Setchin'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Anti-flash theme script: sets theme before first paint -->
+    <script is:inline>
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <header>
+      <nav class="container" style="display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-6); padding-bottom: var(--space-6);">
+        <div>
+          <a href="/" style="font-weight: 700; font-size: var(--text-xl); color: var(--color-heading);">
+            Vlad Setchin
+          </a>
+        </div>
+        <div style="display: flex; gap: var(--space-6); align-items: center;">
+          <a href="/">Home</a>
+          <slot name="theme-toggle" />
+        </div>
+      </nav>
+    </header>
+    
+    <main id="main" style="flex: 1;">
+      <slot />
+    </main>
+    
+    <footer style="border-top: 1px solid var(--color-border); margin-top: var(--space-16);">
+      <div class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-8); text-align: center;">
+        <p style="color: var(--color-text-muted); font-size: var(--text-sm);">
+          © {new Date().getFullYear()} Vlad Setchin. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
