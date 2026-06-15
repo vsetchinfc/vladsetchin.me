@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import GiscusComments from '../../components/GiscusComments';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -54,6 +55,8 @@ function formatDate(date: Date) {
     <footer class="post__footer">
       <a href="/blog/" class="back-link">← Back to blog</a>
     </footer>
+
+    <GiscusComments client:visible />
   </article>
 </Layout>
 
