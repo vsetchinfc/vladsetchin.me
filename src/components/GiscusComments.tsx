@@ -39,12 +39,20 @@ export default function GiscusComments({ theme = 'dark' }: GiscusCommentsProps) 
 
   // Sync theme when it changes
   useEffect(() => {
-    const iframe = document.querySelector<HTMLIFrameElement>('.giscus-frame');
-    if (!iframe) return;
-    iframe.contentWindow?.postMessage(
-      { giscus: { setConfig: { theme: theme === 'dark' ? 'dark_dimmed' : 'light' } } },
-      'https://giscus.app',
-    );
+    const message = {
+      giscus: { setConfig: { theme: theme === 'dark' ? 'dark_dimmed' : 'light' } },
+    };
+
+    const syncTheme = () => {
+      const iframe = document.querySelector<HTMLIFrameElement>('.giscus-frame');
+      if (!iframe?.contentWindow) return false;
+      iframe.contentWindow.postMessage(message, 'https://giscus.app');
+      return true;
+    };
+
+    if (syncTheme()) return;
+    const timeoutId = window.setTimeout(syncTheme, 300);
+    return () => window.clearTimeout(timeoutId);
   }, [theme]);
 
   return (
