@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => {
+    if (a.data.featured && !b.data.featured) return -1;
+    if (!a.data.featured && b.data.featured) return 1;
+    return (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0);
+  });
+---
+
+<Layout
+  title="Projects — Vlad Setchin"
+  description="Portfolio of software projects and experiments."
+>
+  <div class="container" style="padding-top: var(--space-16); padding-bottom: var(--space-24);">
+    <h1 style="margin-bottom: var(--space-4);">Projects</h1>
+    <p style="color: var(--color-text-muted); font-size: var(--text-lg); margin-bottom: var(--space-12); max-width: 560px; line-height: 1.7;">
+      A selection of personal projects, experiments, and open-source work.
+    </p>
+
+    <div class="projects-grid">
+      {projects.map((project) => (
+        <a href={`/projects/${project.slug}/`} class="project-card">
+          <article>
+            {project.data.featured && (
+              <span class="project-card__badge">Featured</span>
+            )}
+            <h2 class="project-card__title">{project.data.title}</h2>
+            <p class="project-card__summary">{project.data.summary}</p>
+            {project.data.tags.length > 0 && (
+              <div class="project-card__tags" aria-label="Tech stack">
+                {project.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            )}
+            <div class="project-card__links">
+              {project.data.repoUrl && (
+                <span class="project-card__link-hint">GitHub →</span>
+              )}
+              {project.data.liveUrl && (
+                <span class="project-card__link-hint">Live →</span>
+              )}
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .project-card {
+    display: block;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, transform 0.1s ease;
+    position: relative;
+  }
+
+  .project-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+
+  .project-card__badge {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius-sm, 0.25rem);
+    padding: 1px var(--space-2);
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .project-card__title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+    color: var(--color-heading);
+  }
+
+  .project-card__summary {
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+  }
+
+  .project-card__tags {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+  }
+
+  .tag {
+    font-size: var(--text-xs);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-sm, 0.25rem);
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+  }
+
+  .project-card__links {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .project-card__link-hint {
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+</style>
