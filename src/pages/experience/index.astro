@@ -10,11 +10,13 @@ import Icon from "../../components/icons/Icon.astro";
 	description="25+ years of full-stack engineering across medical, educational, field service, utilities, retail, and wholesale — from startups to enterprise scale."
 >
 	<div
-		class="container"
+		class="container section"
 		style="padding-top: var(--space-16); padding-bottom: var(--space-24);"
 	>
 		<h1 class="section__title" style="margin-bottom: var(--space-4);">
-			<span class="section__title-icon"><Icon name="briefcase" size={18} /></span>
+			<span class="section__title-icon"
+				><Icon name="briefcase" size={18} /></span
+			>
 			<span class="section__title-text">Experience</span>
 		</h1>
 		<p class="experience-intro">
@@ -30,13 +32,17 @@ import Icon from "../../components/icons/Icon.astro";
 						<div class="timeline__meta">
 							<span class="timeline__period">{role.period}</span>
 						</div>
-						<div class="timeline__marker"><span class="timeline__dot"></span></div>
+						<div class="timeline__marker">
+							<span class="timeline__dot" />
+						</div>
 						<div class="timeline__body">
 							<h2 class="timeline__role">{role.title}</h2>
 							<p class="timeline__company">{role.company}</p>
 							<p class="timeline__summary">{role.summary}</p>
 							<ul class="timeline__highlights">
-								{role.highlights.map((h) => <li>{h}</li>)}
+								{role.highlights.map((h) => (
+									<li>{h}</li>
+								))}
 							</ul>
 							<ul class="timeline__tags">
 								{role.tech.map((t) => (
@@ -49,7 +55,7 @@ import Icon from "../../components/icons/Icon.astro";
 			}
 		</div>
 
-		<div class="experience-cta">
+		<div class="experience-cta section">
 			<h2 style="margin-bottom: var(--space-4);">Want the full picture?</h2>
 			<p
 				style="color: var(--color-text-muted); margin-bottom: var(--space-6); font-size: var(--text-lg);"
@@ -126,7 +132,9 @@ import Icon from "../../components/icons/Icon.astro";
 		height: 9px;
 		border-radius: 50%;
 		background: var(--color-accent);
-		box-shadow: 0 0 0 3px var(--color-bg), 0 0 8px rgba(0, 224, 138, 0.45);
+		box-shadow:
+			0 0 0 3px var(--color-bg),
+			0 0 8px rgba(0, 224, 138, 0.45);
 		margin-top: 0.3em;
 		position: relative;
 		z-index: 1;

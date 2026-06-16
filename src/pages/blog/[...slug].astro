@@ -43,14 +43,18 @@ const blogPostSchema = JSON.stringify({
 	pubDate={post.data.pubDate}
 	jsonLd={blogPostSchema}
 >
-	<article class="container post">
+	<article class="container post section">
 		{
 			post.data.heroImage && (
 				<img
 					class="post__hero"
 					src={`${import.meta.env.BASE_URL}${post.data.heroImage}`}
 					alt=""
-					style={post.data.heroImageLight ? "--hero-pre-filter: invert(1);" : undefined}
+					style={
+						post.data.heroImageLight
+							? "--hero-pre-filter: invert(1);"
+							: undefined
+					}
 				/>
 			)
 		}
@@ -112,7 +116,8 @@ const blogPostSchema = JSON.stringify({
 		border-radius: var(--radius-lg, 0.75rem);
 		border: 1px solid var(--color-border);
 		margin-bottom: var(--space-8);
-		filter: var(--hero-pre-filter, ) grayscale(1) sepia(1) hue-rotate(100deg) saturate(2.4) brightness(0.85) contrast(1.1);
+		filter: var(--hero-pre-filter,) grayscale(1) sepia(1) hue-rotate(100deg)
+			saturate(2.4) brightness(0.85) contrast(1.1);
 	}
 
 	.post__header {

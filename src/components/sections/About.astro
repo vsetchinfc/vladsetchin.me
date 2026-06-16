@@ -1,50 +1,53 @@
 ---
-import Icon from '../icons/Icon.astro';
+import Icon from "../icons/Icon.astro";
 ---
 
 <section id="about" class="section">
-  <div class="container">
-    <h2 class="section__title">
-      <span class="section__title-icon"><Icon name="terminal" size={18} /></span>
-      <span class="section__title-text">About me</span>
-    </h2>
-    <div class="about__grid">
-      <div class="about__text">
-        <p>
-          I'm a senior software engineer with deep .NET/C# and Azure experience, and broad
-          frontend capability across Angular, React, and TypeScript. I've built and delivered
-          production systems across enterprise, SaaS, and startup environments — from API
-          architecture to CI/CD pipelines to complex UI.
-        </p>
-        <p>
-          More recently, I've been designing and running multi-agent AI systems in production.
-          I built agistra.dev — a role-separated delivery system with Architect, Builder, Tester,
-          and Router agents, explicit handoff contracts, and a HOT/WARM/COLD memory architecture.
-          I know where agent systems fail because mine has failed in production, and I've
-          designed around those failures.
-        </p>
-        <p>
-          Based in Australia. Open to senior engineering and AI architecture roles, remote
-          freelance, and consulting engagements worldwide.
-        </p>
-      </div>
-    </div>
-  </div>
+	<div class="container">
+		<h2 class="section__title">
+			<span class="section__title-icon"><Icon name="terminal" size={18} /></span
+			>
+			<span class="section__title-text">About me</span>
+		</h2>
+		<div class="about__grid">
+			<div class="about__text">
+				<p>
+					I'm a Full Stack Software Engineer with deep .NET/C# and Azure
+					experience, and broad frontend capability across Angular, React, and
+					TypeScript. I've built and delivered production systems across
+					enterprise, SaaS, and startup environments — from API architecture to
+					CI/CD pipelines to complex UI.
+				</p>
+				<p>
+					More recently, I've been designing and running multi-agent AI systems
+					in production. I built agistra.dev — a role-separated delivery system
+					with Architect, Builder, Tester, and Router agents, explicit handoff
+					contracts, and a HOT/WARM/COLD memory architecture. I know where agent
+					systems fail because mine has failed in production, and I've designed
+					around those failures.
+				</p>
+				<p>
+					Based in Australia. Open to senior engineering and AI architecture
+					roles, remote freelance, and consulting engagements worldwide.
+				</p>
+			</div>
+		</div>
+	</div>
 </section>
 
 <style>
-  .about__grid {
-    max-width: var(--content-width, 720px);
-  }
+	.about__grid {
+		max-width: var(--content-width, 720px);
+	}
 
-  .about__text p {
-    font-size: var(--text-lg);
-    color: var(--color-text-muted);
-    line-height: 1.8;
-    margin-bottom: var(--space-4);
-  }
+	.about__text p {
+		font-size: var(--text-lg);
+		color: var(--color-text-muted);
+		line-height: 1.8;
+		margin-bottom: var(--space-4);
+	}
 
-  .about__text p:last-child {
-    margin-bottom: 0;
-  }
+	.about__text p:last-child {
+		margin-bottom: 0;
+	}
 </style>
