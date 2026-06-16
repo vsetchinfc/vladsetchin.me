@@ -1,81 +1,91 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Page not found — Vlad Setchin" description="The page you were looking for doesn't exist.">
-  <div class="container not-found">
-    <p class="not-found__code" aria-hidden="true">404</p>
-    <h1 class="not-found__title">Page not found</h1>
-    <p class="not-found__desc">
-      The page you were looking for doesn't exist or has been moved.
-    </p>
-    <div class="not-found__links">
-      <a href={import.meta.env.BASE_URL} class="not-found__link not-found__link--primary">Go home</a>
-      <a href={`${import.meta.env.BASE_URL}blog/`} class="not-found__link">Read the blog</a>
-    </div>
-  </div>
+<Layout
+	title="Page not found — Vlad Setchin"
+	description="The page you were looking for doesn't exist."
+>
+	<div class="container not-found">
+		<p class="not-found__code" aria-hidden="true">404</p>
+		<h1 class="not-found__title">Page not found</h1>
+		<p class="not-found__desc">
+			The page you were looking for doesn't exist or has been moved.
+		</p>
+		<div class="not-found__links">
+			<a
+				href={import.meta.env.BASE_URL}
+				class="not-found__link not-found__link--primary">Go home</a
+			>
+			<a href={`${import.meta.env.BASE_URL}blog/`} class="not-found__link"
+				>Read the blog</a
+			>
+		</div>
+	</div>
 </Layout>
 
 <style>
-  .not-found {
-    padding-top: var(--space-24);
-    padding-bottom: var(--space-24);
-    text-align: center;
-  }
+	.not-found {
+		padding-top: var(--space-24);
+		padding-bottom: var(--space-24);
+		text-align: center;
+	}
 
-  .not-found__code {
-    font-size: 8rem;
-    font-weight: 900;
-    color: var(--color-border);
-    line-height: 1;
-    margin-bottom: var(--space-4);
-    letter-spacing: -0.05em;
-  }
+	.not-found__code {
+		font-size: 8rem;
+		font-weight: 900;
+		color: var(--color-border);
+		line-height: 1;
+		margin-bottom: var(--space-4);
+		letter-spacing: -0.05em;
+	}
 
-  .not-found__title {
-    font-size: var(--text-4xl);
-    margin-bottom: var(--space-4);
-  }
+	.not-found__title {
+		font-size: var(--text-4xl);
+		margin-bottom: var(--space-4);
+	}
 
-  .not-found__desc {
-    color: var(--color-text-muted);
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-8);
-  }
+	.not-found__desc {
+		color: var(--color-text-muted);
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-8);
+	}
 
-  .not-found__links {
-    display: flex;
-    gap: var(--space-4);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+	.not-found__links {
+		display: flex;
+		gap: var(--space-4);
+		justify-content: center;
+		flex-wrap: wrap;
+	}
 
-  .not-found__link {
-    display: inline-flex;
-    align-items: center;
-    padding: var(--space-3) var(--space-6);
-    border-radius: var(--radius-md, 0.5rem);
-    font-weight: 600;
-    text-decoration: none;
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
+	.not-found__link {
+		display: inline-flex;
+		align-items: center;
+		padding: var(--space-3) var(--space-6);
+		border-radius: var(--radius-md, 0.5rem);
+		font-weight: 600;
+		text-decoration: none;
+		border: 1px solid var(--color-border);
+		color: var(--color-text);
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
 
-  .not-found__link:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-    opacity: 1;
-  }
+	.not-found__link:hover {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+		opacity: 1;
+	}
 
-  .not-found__link--primary {
-    background: var(--color-accent);
-    color: #fff;
-    border-color: var(--color-accent);
-  }
+	.not-found__link--primary {
+		background: var(--color-accent);
+		color: #fff;
+		border-color: var(--color-accent);
+	}
 
-  .not-found__link--primary:hover {
-    color: #fff;
-    opacity: 0.85;
-  }
+	.not-found__link--primary:hover {
+		color: #fff;
+		opacity: 0.85;
+	}
 </style>

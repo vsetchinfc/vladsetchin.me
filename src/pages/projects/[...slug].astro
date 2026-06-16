@@ -1,13 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project) => ({
-    params: { slug: project.slug },
-    props: project,
-  }));
+	const projects = await getCollection("projects");
+	return projects.map((project) => ({
+		params: { slug: project.slug },
+		props: project,
+	}));
 }
 
 const project = Astro.props;
@@ -15,141 +15,175 @@ const { Content } = await project.render();
 ---
 
 <Layout
-  title={`${project.data.title} — Vlad Setchin`}
-  description={project.data.summary}
+	title={`${project.data.title} — Vlad Setchin`}
+	description={project.data.summary}
 >
-  <article class="container project">
-    <header class="project__header">
-      <a href={`${import.meta.env.BASE_URL}projects/`} class="back-link" style="margin-bottom: var(--space-6); display: inline-block;">
-        ← Back to projects
-      </a>
-      <h1 class="project__title">{project.data.title}</h1>
-      <p class="project__summary">{project.data.summary}</p>
+	<article class="container project">
+		<header class="project__header">
+			<a
+				href={`${import.meta.env.BASE_URL}projects/`}
+				class="back-link"
+				style="margin-bottom: var(--space-6); display: inline-block;"
+			>
+				← Back to projects
+			</a>
+			<h1 class="project__title">{project.data.title}</h1>
+			<p class="project__summary">{project.data.summary}</p>
 
-      {project.data.tags.length > 0 && (
-        <div class="project__tags" aria-label="Tech stack">
-          {project.data.tags.map((tag) => (
-            <span class="tag">{tag}</span>
-          ))}
-        </div>
-      )}
+			{
+				project.data.tags.length > 0 && (
+					<div class="project__tags" aria-label="Tech stack">
+						{project.data.tags.map((tag) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+				)
+			}
 
-      <div class="project__links">
-        {project.data.repoUrl && (
-          <a
-            href={project.data.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project__link"
-          >
-            View on GitHub →
-          </a>
-        )}
-        {project.data.liveUrl && (
-          <a
-            href={project.data.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project__link"
-          >
-            Live demo →
-          </a>
-        )}
-      </div>
-    </header>
+			<div class="project__links">
+				{
+					project.data.repoUrl && (
+						<a
+							href={project.data.repoUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="project__link"
+						>
+							View on GitHub →
+						</a>
+					)
+				}
+				{
+					project.data.liveUrl && (
+						<a
+							href={project.data.liveUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="project__link"
+						>
+							Live demo →
+						</a>
+					)
+				}
+			</div>
+		</header>
 
-    <div class="prose">
-      <Content />
-    </div>
+		<div class="prose">
+			<Content />
+		</div>
 
-    <!--
+		<!--
       ISLAND SEAM: Add an interactive demo island here if the project has one.
       Example:
         import MyDemo from '../../components/demos/MyDemo.tsx';
         <MyDemo client:visible />
     -->
-  </article>
+	</article>
 </Layout>
 
 <style>
-  .project {
-    padding-top: var(--space-12);
-    padding-bottom: var(--space-16);
-    max-width: var(--content-width, 720px);
-  }
+	.project {
+		padding-top: var(--space-12);
+		padding-bottom: var(--space-16);
+		max-width: var(--content-width, 720px);
+	}
 
-  .project__header {
-    margin-bottom: var(--space-12);
-    padding-bottom: var(--space-8);
-    border-bottom: 1px solid var(--color-border);
-  }
+	.project__header {
+		margin-bottom: var(--space-12);
+		padding-bottom: var(--space-8);
+		border-bottom: 1px solid var(--color-border);
+	}
 
-  .project__title {
-    font-size: clamp(1.75rem, 5vw, var(--text-4xl));
-    margin-bottom: var(--space-3);
-  }
+	.project__title {
+		font-size: clamp(1.75rem, 5vw, var(--text-4xl));
+		margin-bottom: var(--space-3);
+	}
 
-  .project__summary {
-    font-size: var(--text-xl);
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-4);
-    line-height: 1.5;
-  }
+	.project__summary {
+		font-size: var(--text-xl);
+		color: var(--color-text-muted);
+		margin-bottom: var(--space-4);
+		line-height: 1.5;
+	}
 
-  .project__tags {
-    display: flex;
-    gap: var(--space-2);
-    flex-wrap: wrap;
-    margin-bottom: var(--space-6);
-  }
+	.project__tags {
+		display: flex;
+		gap: var(--space-2);
+		flex-wrap: wrap;
+		margin-bottom: var(--space-6);
+	}
 
-  .tag {
-    font-size: var(--text-xs);
-    padding: 2px var(--space-2);
-    border-radius: var(--radius-sm, 0.25rem);
-    background: var(--color-surface);
-    color: var(--color-text-muted);
-    border: 1px solid var(--color-border);
-  }
+	.tag {
+		font-size: var(--text-xs);
+		padding: 2px var(--space-2);
+		border-radius: var(--radius-sm, 0.25rem);
+		background: var(--color-surface);
+		color: var(--color-text-muted);
+		border: 1px solid var(--color-border);
+	}
 
-  .project__links {
-    display: flex;
-    gap: var(--space-4);
-    flex-wrap: wrap;
-  }
+	.project__links {
+		display: flex;
+		gap: var(--space-4);
+		flex-wrap: wrap;
+	}
 
-  .project__link {
-    font-weight: 600;
-    color: var(--color-accent);
-    font-size: var(--text-base);
-  }
+	.project__link {
+		font-weight: 600;
+		color: var(--color-accent);
+		font-size: var(--text-base);
+	}
 
-  .back-link {
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-  }
+	.back-link {
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+	}
 
-  /* Reuse prose styles from blog */
-  .prose {
-    font-size: var(--text-lg);
-    line-height: 1.8;
-    color: var(--color-text);
-  }
+	/* Reuse prose styles from blog */
+	.prose {
+		font-size: var(--text-lg);
+		line-height: 1.8;
+		color: var(--color-text);
+	}
 
-  .prose :global(h2) { font-size: var(--text-2xl); margin-top: var(--space-12); margin-bottom: var(--space-4); }
-  .prose :global(h3) { font-size: var(--text-xl); margin-top: var(--space-8); margin-bottom: var(--space-3); }
-  .prose :global(p) { margin-bottom: var(--space-6); }
-  .prose :global(ul), .prose :global(ol) { margin-bottom: var(--space-6); padding-left: var(--space-6); }
-  .prose :global(li) { margin-bottom: var(--space-2); }
-  .prose :global(a) { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
-  .prose :global(hr) { border: none; border-top: 1px solid var(--color-border); margin: var(--space-12) 0; }
-  .prose :global(pre) {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md, 0.5rem);
-    padding: var(--space-6);
-    overflow-x: auto;
-    margin-bottom: var(--space-6);
-    font-size: var(--text-sm);
-  }
+	.prose :global(h2) {
+		font-size: var(--text-2xl);
+		margin-top: var(--space-12);
+		margin-bottom: var(--space-4);
+	}
+	.prose :global(h3) {
+		font-size: var(--text-xl);
+		margin-top: var(--space-8);
+		margin-bottom: var(--space-3);
+	}
+	.prose :global(p) {
+		margin-bottom: var(--space-6);
+	}
+	.prose :global(ul),
+	.prose :global(ol) {
+		margin-bottom: var(--space-6);
+		padding-left: var(--space-6);
+	}
+	.prose :global(li) {
+		margin-bottom: var(--space-2);
+	}
+	.prose :global(a) {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.prose :global(hr) {
+		border: none;
+		border-top: 1px solid var(--color-border);
+		margin: var(--space-12) 0;
+	}
+	.prose :global(pre) {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md, 0.5rem);
+		padding: var(--space-6);
+		overflow-x: auto;
+		margin-bottom: var(--space-6);
+		font-size: var(--text-sm);
+	}
 </style>

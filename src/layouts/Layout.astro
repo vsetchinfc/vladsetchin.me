@@ -95,14 +95,18 @@ const personSchema = JSON.stringify({
 						href={`${base}projects/`}
 						class:list={[
 							"nav__link",
-							{ "nav__link--active": currentPath.startsWith(`${base}projects`) },
+							{
+								"nav__link--active": currentPath.startsWith(`${base}projects`),
+							},
 						]}>Projects</a
 					>
 					<a
 						href={`${base}services/`}
 						class:list={[
 							"nav__link",
-							{ "nav__link--active": currentPath.startsWith(`${base}services`) },
+							{
+								"nav__link--active": currentPath.startsWith(`${base}services`),
+							},
 						]}>Services</a
 					>
 					<a href={`${base}#contact`} class:list={["nav__link"]}>Contact</a>
