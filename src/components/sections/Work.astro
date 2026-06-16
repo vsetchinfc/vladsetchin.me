@@ -5,11 +5,11 @@ import Icon from "../icons/Icon.astro";
 const featured = EXPERIENCE.slice(0, 3);
 ---
 
-<section id="experience" class="section">
+<section id="work" class="section">
 	<div class="container">
 		<h2 class="section__title">
 			<span class="section__title-icon"><Icon name="briefcase" size={18} /></span>
-			<span class="section__title-text">Experience</span>
+			<span class="section__title-text">Selected Work</span>
 		</h2>
 		<div class="experience__list">
 			{
@@ -29,8 +29,8 @@ const featured = EXPERIENCE.slice(0, 3);
 				))
 			}
 		</div>
-		<a href={`${import.meta.env.BASE_URL}experience/`} class="experience__cta"
-			>View full experience →</a
+		<a href={`${import.meta.env.BASE_URL}work/`} class="experience__cta"
+			>View full work history →</a
 		>
 	</div>
 </section>
