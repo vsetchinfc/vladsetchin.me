@@ -30,13 +30,13 @@ import Icon from "../components/icons/Icon.astro";
 			<div class="teaser-grid">
 				{
 					SERVICES.map((s) => (
-						<div class="teaser-card">
+						<a href={`${import.meta.env.BASE_URL}services/`} class="teaser-card">
 							<div class="teaser-card__icon">
 								<Icon name={s.icon} size={24} />
 							</div>
 							<h3 class="teaser-card__title">{s.title}</h3>
 							<p class="teaser-card__desc">{s.description}</p>
-						</div>
+						</a>
 					))
 				}
 			</div>
@@ -58,9 +58,22 @@ import Icon from "../components/icons/Icon.astro";
 	}
 
 	.teaser-card {
+		display: block;
 		padding: var(--space-6);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg, 0.75rem);
+		text-decoration: none;
+		color: inherit;
+		transition:
+			transform 0.12s ease,
+			border-color 0.12s ease,
+			box-shadow 0.12s ease;
+	}
+
+	.teaser-card:hover {
+		border-color: var(--color-accent);
+		transform: translateY(-2px);
+		box-shadow: var(--card-hover-shadow);
 	}
 
 	.teaser-card__icon {

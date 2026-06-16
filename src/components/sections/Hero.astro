@@ -63,8 +63,8 @@ const nodes = [
 				</div>
 			</div>
 
-			<div class="hero__graphic" aria-hidden="true">
-				<svg viewBox="0 0 360 360" class="constellation" role="presentation">
+			<div class="hero__graphic">
+				<svg viewBox="0 0 360 360" class="constellation">
 					<defs>
 						{
 							Object.entries(ICONS).map(([key, icon]) => (
@@ -82,11 +82,11 @@ const nodes = [
 						}
 					</defs>
 
-					<g class="constellation__lines">
+					<g class="constellation__lines" aria-hidden="true">
 						{nodes.map((n) => <line x1="180" y1="180" x2={n.x} y2={n.y} />)}
 					</g>
 
-					<g class="constellation__deco">
+					<g class="constellation__deco" aria-hidden="true">
 						<rect
 							x="244"
 							y="60"
@@ -107,29 +107,31 @@ const nodes = [
 							transform="rotate(45 273 283)"></rect>
 					</g>
 
-					<g class="constellation__node constellation__node--center">
+					<g class="constellation__node constellation__node--center" aria-hidden="true">
 						<circle cx="180" cy="180" r="36"></circle>
 						<text x="180" y="187">{"{ }"}</text>
 					</g>
 
 					{
 						nodes.map((n) => (
-							<g
-								class="constellation__node"
-								transform={`translate(${n.x} ${n.y})`}
-							>
-								<circle r="22" />
-								<use
-									href={`#hero-icon-${n.icon}`}
-									x="-10"
-									y="-10"
-									width="20"
-									height="20"
-								/>
-								<text class="constellation__label" y="34">
-									{n.label}
-								</text>
-							</g>
+							<a href="#skills" aria-label={`Jump to skills: ${n.label}`}>
+								<g
+									class="constellation__node"
+									transform={`translate(${n.x} ${n.y})`}
+								>
+									<circle r="22" />
+									<use
+										href={`#hero-icon-${n.icon}`}
+										x="-10"
+										y="-10"
+										width="20"
+										height="20"
+									/>
+									<text class="constellation__label" y="34">
+										{n.label}
+									</text>
+								</g>
+							</a>
 						))
 					}
 				</svg>
@@ -480,6 +482,26 @@ const nodes = [
 
 	.constellation__node:hover circle {
 		stroke: var(--color-accent);
+	}
+
+	.constellation a {
+		cursor: pointer;
+	}
+
+	.constellation a:hover .constellation__node,
+	.constellation a:focus-visible .constellation__node {
+		transform-origin: center;
+	}
+
+	.constellation a:hover .constellation__node circle,
+	.constellation a:focus-visible .constellation__node circle {
+		stroke: var(--color-accent);
+		fill: var(--color-bg);
+	}
+
+	.constellation a:focus-visible .constellation__node circle {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
 	}
 
 	.constellation__node use {
