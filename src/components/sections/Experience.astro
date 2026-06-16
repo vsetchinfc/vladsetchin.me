@@ -15,12 +15,9 @@ const featured = EXPERIENCE.slice(0, 3);
 			{
 				featured.map((role) => (
 					<div class="experience__item">
-						<div class="experience__period">{role.period}</div>
 						<div class="experience__marker"><span class="experience__dot"></span></div>
 						<div class="experience__body">
-							<h3 class="experience__role">
-								{role.title} <span class="experience__company">@ {role.company}</span>
-							</h3>
+							<h3 class="experience__role">{role.product}</h3>
 							<p class="experience__summary">{role.summary}</p>
 							<ul class="experience__tags">
 								{role.tech.slice(0, 4).map((t) => (
@@ -53,14 +50,14 @@ const featured = EXPERIENCE.slice(0, 3);
 		position: absolute;
 		top: 6px;
 		bottom: 6px;
-		left: calc(140px + var(--space-6) + 10px);
+		left: 10px;
 		width: 1px;
 		background: var(--color-border);
 	}
 
 	.experience__item {
 		display: grid;
-		grid-template-columns: 140px 20px 1fr;
+		grid-template-columns: 20px 1fr;
 		column-gap: var(--space-6);
 		padding-bottom: var(--space-8);
 		border-bottom: 1px solid var(--color-border);
@@ -69,12 +66,6 @@ const featured = EXPERIENCE.slice(0, 3);
 	.experience__item:last-child {
 		border-bottom: none;
 		padding-bottom: 0;
-	}
-
-	.experience__period {
-		font-size: var(--text-sm);
-		color: var(--color-text-muted);
-		white-space: nowrap;
 	}
 
 	.experience__marker {
@@ -97,12 +88,7 @@ const featured = EXPERIENCE.slice(0, 3);
 	.experience__role {
 		font-size: var(--text-lg);
 		color: var(--color-heading);
-		margin-bottom: var(--space-2);
-	}
-
-	.experience__company {
-		color: var(--color-accent);
-		font-weight: 500;
+		margin-bottom: var(--space-3);
 	}
 
 	.experience__summary {

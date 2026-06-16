@@ -1,7 +1,5 @@
 export interface ExperienceEntry {
-  company: string;
-  title: string;
-  period: string;
+  product: string;
   summary: string;
   highlights: string[];
   tech: string[];
@@ -9,9 +7,7 @@ export interface ExperienceEntry {
 
 export const EXPERIENCE: ExperienceEntry[] = [
   {
-    company: 'Ascora',
-    title: 'Senior Full Stack Software Engineer',
-    period: 'Jul 2025 – May 2026',
+    product: 'Enterprise Field Service Management Platform',
     summary:
       'Maintained and enhanced a 150+ project enterprise field service management platform, including a multi-accounting integration hub spanning Xero, MYOB, QuickBooks, and Deputy.',
     highlights: [
@@ -22,9 +18,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['ASP.NET MVC', '.NET Framework', 'SQL Server', 'Azure App Services', 'OAuth2'],
   },
   {
-    company: 'QuantumIT',
-    title: 'Senior Full Stack Software Engineer',
-    period: 'Mar 2023 – Jun 2025',
+    product: 'Contract Management Platform (Microservices Consulting)',
     summary:
       'IT consulting across multitenant microservices and a legacy monolith. Owned the internal Contract Management project as sole Angular developer; mentored junior developers.',
     highlights: [
@@ -35,9 +29,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['CQRS', 'DDD', 'Angular', '.NET Core', 'Azure', 'Entity Framework Core'],
   },
   {
-    company: 'Summatix',
-    title: 'Full Stack Developer',
-    period: 'Sep 2019 – 2023',
+    product: 'Event-Driven CQRS Platform',
     summary:
       'Implemented a scalable, modular, event-driven system on CQRS and SOLID principles. Transitioned the team to a high-performing hybrid remote model.',
     highlights: [
@@ -48,11 +40,9 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['CQRS', 'Event-Driven Architecture', 'Angular', 'GraphQL', 'CosmosDB', 'Azure DevOps'],
   },
   {
-    company: 'Noble Systems',
-    title: 'Senior Full-Stack Software Engineer',
-    period: 'Jul 2010 – Sep 2019',
+    product: 'Workforce Management & Forecasting Platform',
     summary:
-      'Nine years building call-centre workforce management tooling — forecasting, campaign management, and legacy modernisation.',
+      'Built call-centre workforce management tooling — forecasting, campaign management, and legacy modernisation.',
     highlights: [
       'Built Outbound Forecast and Campaign Management modules from spec through implementation',
       'Converted legacy VB6 modules to .NET C# 4.5',
@@ -62,9 +52,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['.NET', 'Angular', 'Vue.js', 'ASP.NET MVC', 'WinForms', 'TFS'],
   },
   {
-    company: 'Pen Computer Systems',
-    title: 'Senior Software Engineer',
-    period: 'Jun 2007 – Jul 2010',
+    product: 'Healthcare Systems Integration Suite',
     summary:
       'Healthcare systems integration — HL7 messaging, licensing infrastructure, and CI tooling for a clinical software suite.',
     highlights: [
@@ -75,9 +63,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['.NET WCF', 'HL7', 'ASP.NET', 'SQL Server', 'VMWare', 'CruiseControl.NET'],
   },
   {
-    company: 'Hansen Technologies',
-    title: 'Software Developer',
-    period: 'Dec 2005 – Jun 2007',
+    product: 'Multi-Client Unified Billing Platform',
     summary: 'Billing systems support and automation for a multi-client unified billing platform.',
     highlights: [
       'Rewrote the Gas and Electricity Message Broker systems, saving $15,000/month in third-party support costs',
@@ -87,9 +73,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     tech: ['.NET 2.0', 'WinForms', 'Oracle', 'TestComplete', 'ClearCase'],
   },
   {
-    company: 'RMCS — Retail Management Computer Systems',
-    title: 'Software Developer',
-    period: 'Mar 2000 – Dec 2005',
+    product: 'Client-Server Retail Management Systems',
     summary:
       'Early career across client-server application development, relational database design, and systems administration.',
     highlights: [

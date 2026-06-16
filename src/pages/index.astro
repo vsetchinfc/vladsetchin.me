@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import ThemeToggle from "../components/ThemeToggle";
 import Hero from "../components/sections/Hero.astro";
@@ -8,6 +9,18 @@ import Experience from "../components/sections/Experience.astro";
 import Contact from "../components/sections/Contact.astro";
 import { SERVICES } from "../data/services";
 import Icon from "../components/icons/Icon.astro";
+
+const latestPosts = (await getCollection("blog", ({ data }) => !data.draft))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 3);
+
+function formatDate(date: Date) {
+	return date.toLocaleDateString("en-AU", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+}
 ---
 
 <Layout
@@ -20,6 +33,57 @@ import Icon from "../components/icons/Icon.astro";
 	<Skills />
 	<Experience />
 
+	<!-- Latest posts teaser -->
+	{
+		latestPosts.length > 0 && (
+			<section id="blog" class="section">
+				<div class="container">
+					<h2 class="section__title">
+						<span class="section__title-icon">
+							<Icon name="pen" size={18} />
+						</span>
+						<span class="section__title-text">Blog: Featured Posts</span>
+					</h2>
+					<div class="post-teaser-grid">
+						{latestPosts.map((post) => (
+							<a
+								href={`${import.meta.env.BASE_URL}blog/${post.slug}/`}
+								class="post-teaser-card"
+							>
+								{post.data.thumbnail || post.data.heroImage ? (
+									<div class="post-teaser-thumb">
+										<img
+											src={`${import.meta.env.BASE_URL}${post.data.thumbnail ?? post.data.heroImage}`}
+											alt=""
+											loading="lazy"
+										/>
+									</div>
+								) : (
+									<div class="post-teaser-thumb post-teaser-thumb--fallback">
+										<Icon name="pen" size={28} />
+									</div>
+								)}
+								<div class="post-teaser-body">
+									<time
+										class="post-teaser-date"
+										datetime={post.data.pubDate.toISOString()}
+									>
+										{formatDate(post.data.pubDate)}
+									</time>
+									<h3 class="post-teaser-title">{post.data.title}</h3>
+									<p class="post-teaser-desc">{post.data.description}</p>
+								</div>
+							</a>
+						))}
+					</div>
+					<a href={`${import.meta.env.BASE_URL}blog/`} class="teaser-cta">
+						View all posts →
+					</a>
+				</div>
+			</section>
+		)
+	}
+
 	<!-- Services teaser -->
 	<section id="services" class="section">
 		<div class="container">
@@ -30,7 +94,10 @@ import Icon from "../components/icons/Icon.astro";
 			<div class="teaser-grid">
 				{
 					SERVICES.map((s) => (
-						<a href={`${import.meta.env.BASE_URL}services/`} class="teaser-card">
+						<a
+							href={`${import.meta.env.BASE_URL}services/`}
+							class="teaser-card"
+						>
 							<div class="teaser-card__icon">
 								<Icon name={s.icon} size={24} />
 							</div>
@@ -105,5 +172,74 @@ import Icon from "../components/icons/Icon.astro";
 		font-weight: 600;
 		color: var(--color-accent);
 		font-size: var(--text-base);
+	}
+
+	.post-teaser-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: var(--space-6);
+		margin-bottom: var(--space-6);
+	}
+
+	.post-teaser-card {
+		display: block;
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg, 0.75rem);
+		text-decoration: none;
+		color: inherit;
+		transition:
+			transform 0.12s ease,
+			border-color 0.12s ease,
+			box-shadow 0.12s ease;
+	}
+
+	.post-teaser-card:hover {
+		border-color: var(--color-accent);
+		transform: translateY(-2px);
+		box-shadow: var(--card-hover-shadow);
+	}
+
+	.post-teaser-thumb {
+		width: 100%;
+		height: 160px;
+	}
+
+	.post-teaser-thumb img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.post-teaser-thumb--fallback {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-accent);
+		background: var(--color-surface);
+	}
+
+	.post-teaser-body {
+		padding: var(--space-6);
+	}
+
+	.post-teaser-date {
+		display: block;
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		margin-bottom: var(--space-2);
+	}
+
+	.post-teaser-title {
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-2);
+		color: var(--color-heading);
+	}
+
+	.post-teaser-desc {
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+		line-height: 1.6;
 	}
 </style>
