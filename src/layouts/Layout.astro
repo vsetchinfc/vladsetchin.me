@@ -1,173 +1,199 @@
 ---
-import '../styles/global.css';
-import SEOHead from '../components/SEOHead.astro';
-import { SITE } from '../data/site';
+import "../styles/global.css";
+import SEOHead from "../components/SEOHead.astro";
+import { SITE } from "../data/site";
 
 export interface Props {
-  title?: string;
-  description?: string;
-  ogImage?: string;
-  ogType?: 'website' | 'article';
-  pubDate?: Date;
-  jsonLd?: string;
+	title?: string;
+	description?: string;
+	ogImage?: string;
+	ogType?: "website" | "article";
+	pubDate?: Date;
+	jsonLd?: string;
 }
 
 const {
-  title = SITE.title,
-  description = SITE.description,
-  ogImage,
-  ogType = 'website',
-  pubDate,
-  jsonLd,
+	title = SITE.title,
+	description = SITE.description,
+	ogImage,
+	ogType = "website",
+	pubDate,
+	jsonLd,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL;
 
 // JSON-LD structured data
 const personSchema = JSON.stringify({
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: SITE.title,
-  url: SITE.url,
-  sameAs: [SITE.github, SITE.linkedin, SITE.twitter],
-  jobTitle: SITE.tagline,
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: SITE.title,
+	url: SITE.url,
+	sameAs: [SITE.github, SITE.linkedin, SITE.twitter],
+	jobTitle: SITE.tagline,
 });
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="generator" content={Astro.generator} />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+		<link rel="manifest" href={`${base}site.webmanifest`} />
+		<meta name="generator" content={Astro.generator} />
 
-    <SEOHead
-      title={title}
-      description={description}
-      ogImage={ogImage}
-      ogType={ogType}
-      pubDate={pubDate}
-    />
+		<SEOHead
+			title={title}
+			description={description}
+			ogImage={ogImage}
+			ogType={ogType}
+			pubDate={pubDate}
+		/>
 
-    <!-- JSON-LD: Person (home page) -->
-    {currentPath === '/' && (
-      <script type="application/ld+json" set:html={personSchema} />
-    )}
-    <!-- JSON-LD: custom (blog posts, etc.) -->
-    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
-    
-    <!-- Anti-flash theme script: sets theme before first paint -->
-    <script is:inline>
-      (function() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
-  </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    
-    <header class="site-header">
-      <nav class="container nav" aria-label="Main navigation">
-        <a href="/" class="nav__brand" aria-label="Vlad Setchin ÔÇö home">
-          Vlad Setchin
-        </a>
-        <div class="nav__links">
-          <a href="/#about" class:list={['nav__link']}>About</a>
-          <a href="/#skills" class:list={['nav__link']}>Skills</a>
-          <a href="/blog/" class:list={['nav__link', { 'nav__link--active': currentPath.startsWith('/blog') }]}>Blog</a>
-          <a href="/projects/" class:list={['nav__link', { 'nav__link--active': currentPath.startsWith('/projects') }]}>Projects</a>
-          <a href="/services/" class:list={['nav__link', { 'nav__link--active': currentPath.startsWith('/services') }]}>Services</a>
-          <a href="/#contact" class:list={['nav__link']}>Contact</a>
-          <slot name="theme-toggle" />
-        </div>
-      </nav>
-    </header>
-    
-    <main id="main" style="flex: 1;">
-      <slot />
-    </main>
-    
-    <footer class="site-footer">
-      <div class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-8); text-align: center;">
-        <p style="color: var(--color-text-muted); font-size: var(--text-sm);">
-          ┬® {new Date().getFullYear()} Vlad Setchin. All rights reserved.
-        </p>
-      </div>
-    </footer>
-  </body>
+		<!-- JSON-LD: Person (home page) -->
+		{
+			currentPath === base && (
+				<script type="application/ld+json" set:html={personSchema} />
+			)
+		}
+		<!-- JSON-LD: custom (blog posts, etc.) -->
+		{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+
+		<!-- Anti-flash theme script: sets theme before first paint -->
+		<script is:inline>
+			(function () {
+				const savedTheme = localStorage.getItem("theme");
+				const prefersDark = window.matchMedia(
+					"(prefers-color-scheme: dark)",
+				).matches;
+				const theme = savedTheme || (prefersDark ? "dark" : "light");
+				document.documentElement.setAttribute("data-theme", theme);
+			})();
+		</script>
+	</head>
+	<body>
+		<a href="#main" class="skip-link">Skip to main content</a>
+
+		<header class="site-header">
+			<nav class="container nav" aria-label="Main navigation">
+				<a href={base} class="nav__brand" aria-label="Vlad Setchin - home">
+					Vlad Setchin
+				</a>
+				<div class="nav__links">
+					<a href={`${base}#about`} class:list={["nav__link"]}>About</a>
+					<a href={`${base}#skills`} class:list={["nav__link"]}>Skills</a>
+					<a
+						href={`${base}blog/`}
+						class:list={[
+							"nav__link",
+							{ "nav__link--active": currentPath.startsWith(`${base}blog`) },
+						]}>Blog</a
+					>
+					<a
+						href={`${base}projects/`}
+						class:list={[
+							"nav__link",
+							{ "nav__link--active": currentPath.startsWith(`${base}projects`) },
+						]}>Projects</a
+					>
+					<a
+						href={`${base}services/`}
+						class:list={[
+							"nav__link",
+							{ "nav__link--active": currentPath.startsWith(`${base}services`) },
+						]}>Services</a
+					>
+					<a href={`${base}#contact`} class:list={["nav__link"]}>Contact</a>
+					<slot name="theme-toggle" />
+				</div>
+			</nav>
+		</header>
+
+		<main id="main" style="flex: 1;">
+			<slot />
+		</main>
+
+		<footer class="site-footer">
+			<div
+				class="container"
+				style="padding-top: var(--space-8); padding-bottom: var(--space-8); text-align: center;"
+			>
+				<p style="color: var(--color-text-muted); font-size: var(--text-sm);">
+					┬® {new Date().getFullYear()} Vlad Setchin. All rights reserved.
+				</p>
+			</div>
+		</footer>
+	</body>
 </html>
 
 <style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    backdrop-filter: blur(8px);
-  }
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: var(--color-bg);
+		border-bottom: 1px solid var(--color-border);
+		backdrop-filter: blur(8px);
+	}
 
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: var(--space-4);
-    padding-bottom: var(--space-4);
-  }
+	.nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: var(--space-4);
+		padding-bottom: var(--space-4);
+	}
 
-  .nav__brand {
-    font-weight: 700;
-    font-size: var(--text-lg);
-    color: var(--color-heading);
-    text-decoration: none;
-    flex-shrink: 0;
-  }
+	.nav__brand {
+		font-weight: 700;
+		font-size: var(--text-lg);
+		color: var(--color-heading);
+		text-decoration: none;
+		flex-shrink: 0;
+	}
 
-  .nav__brand:hover {
-    opacity: 0.8;
-  }
+	.nav__brand:hover {
+		opacity: 0.8;
+	}
 
-  .nav__links {
-    display: flex;
-    gap: var(--space-2);
-    align-items: center;
-    flex-wrap: wrap;
-  }
+	.nav__links {
+		display: flex;
+		gap: var(--space-2);
+		align-items: center;
+		flex-wrap: wrap;
+	}
 
-  .nav__link {
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-sm, 0.25rem);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
+	.nav__link {
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		padding: var(--space-1) var(--space-2);
+		border-radius: var(--radius-sm, 0.25rem);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
 
-  .nav__link:hover,
-  .nav__link--active {
-    color: var(--color-accent);
-    opacity: 1;
-  }
+	.nav__link:hover,
+	.nav__link--active {
+		color: var(--color-accent);
+		opacity: 1;
+	}
 
-  .site-footer {
-    border-top: 1px solid var(--color-border);
-    margin-top: var(--space-16);
-  }
+	.site-footer {
+		border-top: 1px solid var(--color-border);
+		margin-top: var(--space-16);
+	}
 
-  @media (max-width: 640px) {
-    .nav__links {
-      gap: var(--space-1);
-    }
+	@media (max-width: 640px) {
+		.nav__links {
+			gap: var(--space-1);
+		}
 
-    .nav__link {
-      font-size: var(--text-xs);
-      padding: var(--space-1);
-    }
-  }
+		.nav__link {
+			font-size: var(--text-xs);
+			padding: var(--space-1);
+		}
+	}
 </style>

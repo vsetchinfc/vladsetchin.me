@@ -10,8 +10,8 @@ import Layout from '../layouts/Layout.astro';
       The page you were looking for doesn't exist or has been moved.
     </p>
     <div class="not-found__links">
-      <a href="/" class="not-found__link not-found__link--primary">Go home</a>
-      <a href="/blog/" class="not-found__link">Read the blog</a>
+      <a href={import.meta.env.BASE_URL} class="not-found__link not-found__link--primary">Go home</a>
+      <a href={`${import.meta.env.BASE_URL}blog/`} class="not-found__link">Read the blog</a>
     </div>
   </div>
 </Layout>
