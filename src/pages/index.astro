@@ -1,70 +1,72 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ThemeToggle from '../components/ThemeToggle';
-import Hero from '../components/sections/Hero.astro';
-import About from '../components/sections/About.astro';
-import Skills from '../components/sections/Skills.astro';
-import Contact from '../components/sections/Contact.astro';
-import { SERVICES } from '../data/services';
+import Layout from "../layouts/Layout.astro";
+import ThemeToggle from "../components/ThemeToggle";
+import Hero from "../components/sections/Hero.astro";
+import About from "../components/sections/About.astro";
+import Skills from "../components/sections/Skills.astro";
+import Contact from "../components/sections/Contact.astro";
+import { SERVICES } from "../data/services";
 ---
 
 <Layout
-  title="Vlad Setchin ÔÇö Software Engineer & Consultant"
-  description="Software Engineer with expertise in Angular, TypeScript, and cloud technologies. Personal site, blog, and portfolio."
+	title="Vlad Setchin - Software Engineer & Consultant"
+	description="Software Engineer with expertise in Angular, TypeScript, and cloud technologies. Personal site, blog, and portfolio."
 >
-  <ThemeToggle slot="theme-toggle" client:load />
-  <Hero />
-  <About />
-  <Skills />
+	<ThemeToggle slot="theme-toggle" client:load />
+	<Hero />
+	<About />
+	<Skills />
 
-  <!-- Services teaser -->
-  <section id="services" class="section">
-    <div class="container">
-      <h2 class="section__title">Services</h2>
-      <div class="teaser-grid">
-        {SERVICES.map((s) => (
-          <div class="teaser-card">
-            <h3 class="teaser-card__title">{s.title}</h3>
-            <p class="teaser-card__desc">{s.description}</p>
-          </div>
-        ))}
-      </div>
-      <a href="/services/" class="teaser-cta">View all services →</a>
-    </div>
-  </section>
+	<!-- Services teaser -->
+	<section id="services" class="section">
+		<div class="container">
+			<h2 class="section__title">Services</h2>
+			<div class="teaser-grid">
+				{
+					SERVICES.map((s) => (
+						<div class="teaser-card">
+							<h3 class="teaser-card__title">{s.title}</h3>
+							<p class="teaser-card__desc">{s.description}</p>
+						</div>
+					))
+				}
+			</div>
+			<a href={`${import.meta.env.BASE_URL}services/`} class="teaser-cta">View all services →</a>
+		</div>
+	</section>
 
-  <Contact />
+	<Contact />
 </Layout>
 
 <style>
-  .teaser-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-  }
+	.teaser-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: var(--space-4);
+		margin-bottom: var(--space-6);
+	}
 
-  .teaser-card {
-    padding: var(--space-6);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg, 0.75rem);
-  }
+	.teaser-card {
+		padding: var(--space-6);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg, 0.75rem);
+	}
 
-  .teaser-card__title {
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-2);
-    color: var(--color-heading);
-  }
+	.teaser-card__title {
+		font-size: var(--text-lg);
+		margin-bottom: var(--space-2);
+		color: var(--color-heading);
+	}
 
-  .teaser-card__desc {
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    line-height: 1.6;
-  }
+	.teaser-card__desc {
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+		line-height: 1.6;
+	}
 
-  .teaser-cta {
-    font-weight: 600;
-    color: var(--color-accent);
-    font-size: var(--text-base);
-  }
+	.teaser-cta {
+		font-weight: 600;
+		color: var(--color-accent);
+		font-size: var(--text-base);
+	}
 </style>

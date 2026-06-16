@@ -1,143 +1,155 @@
 ---
-import { SERVICES } from '../data/services';
-import { SITE } from '../data/site';
-import Layout from '../layouts/Layout.astro';
+import { SERVICES } from "../data/services";
+import { SITE } from "../data/site";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Services — Vlad Setchin"
-  description="Software engineering, technical consulting, and developer mentoring services."
+	title="Vlad Setchin -Services"
+	description="Software engineering, technical consulting, and developer mentoring services."
 >
-  <div class="container" style="padding-top: var(--space-16); padding-bottom: var(--space-24);">
-    <h1 style="margin-bottom: var(--space-4);">Services</h1>
-    <!-- TODO: owner copy — update the intro paragraph -->
-    <p class="services-intro">
-      I work with teams and individuals on software engineering, consulting, and mentoring engagements.
-      All services are available remotely.
-    </p>
+	<div
+		class="container"
+		style="padding-top: var(--space-16); padding-bottom: var(--space-24);"
+	>
+		<h1 style="margin-bottom: var(--space-4);">Services</h1>
+		<!-- TODO: owner copy — update the intro paragraph -->
+		<p class="services-intro">
+			I work with teams and individuals on software engineering, consulting, and
+			mentoring engagements. All services are available remotely.
+		</p>
 
-    <div class="services-grid">
-      {SERVICES.map((service) => (
-        <article class="service-card">
-          <h2 class="service-card__title">{service.title}</h2>
-          <p class="service-card__desc">{service.description}</p>
-          <ul class="service-card__bullets">
-            {service.bullets.map((bullet) => (
-              <li>{bullet}</li>
-            ))}
-          </ul>
-        </article>
-      ))}
-    </div>
+		<div class="services-grid">
+			{
+				SERVICES.map((service) => (
+					<article class="service-card">
+						<h2 class="service-card__title">{service.title}</h2>
+						<p class="service-card__desc">{service.description}</p>
+						<ul class="service-card__bullets">
+							{service.bullets.map((bullet) => (
+								<li>{bullet}</li>
+							))}
+						</ul>
+					</article>
+				))
+			}
+		</div>
 
-    <div class="services-cta">
-      <h2 style="margin-bottom: var(--space-4);">Ready to work together?</h2>
-      <p style="color: var(--color-text-muted); margin-bottom: var(--space-6); font-size: var(--text-lg);">
-        <!-- TODO: owner copy -->
-        Let's talk about your project or team goals.
-      </p>
-      <a href={`mailto:${SITE.email}`} class="cta-btn">Get in touch</a>
-      <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn--secondary">
-        Connect on LinkedIn
-      </a>
-    </div>
-  </div>
+		<div class="services-cta">
+			<h2 style="margin-bottom: var(--space-4);">Ready to work together?</h2>
+			<p
+				style="color: var(--color-text-muted); margin-bottom: var(--space-6); font-size: var(--text-lg);"
+			>
+				<!-- TODO: owner copy -->
+				Let's talk about your project or team goals.
+			</p>
+			<a href={`mailto:${SITE.email}`} class="cta-btn">Get in touch</a>
+			<a
+				href={SITE.linkedin}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="cta-btn cta-btn--secondary"
+			>
+				Connect on LinkedIn
+			</a>
+		</div>
+	</div>
 </Layout>
 
 <style>
-  .services-intro {
-    font-size: var(--text-xl);
-    color: var(--color-text-muted);
-    max-width: 640px;
-    margin-bottom: var(--space-12);
-    line-height: 1.7;
-  }
+	.services-intro {
+		font-size: var(--text-xl);
+		color: var(--color-text-muted);
+		max-width: 640px;
+		margin-bottom: var(--space-12);
+		line-height: 1.7;
+	}
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-6);
-    margin-bottom: var(--space-16);
-  }
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: var(--space-6);
+		margin-bottom: var(--space-16);
+	}
 
-  .service-card {
-    padding: var(--space-8);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg, 0.75rem);
-    transition: border-color 0.2s ease;
-  }
+	.service-card {
+		padding: var(--space-8);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg, 0.75rem);
+		transition: border-color 0.2s ease;
+	}
 
-  .service-card:hover {
-    border-color: var(--color-accent);
-  }
+	.service-card:hover {
+		border-color: var(--color-accent);
+	}
 
-  .service-card__title {
-    font-size: var(--text-xl);
-    margin-bottom: var(--space-3);
-    color: var(--color-heading);
-  }
+	.service-card__title {
+		font-size: var(--text-xl);
+		margin-bottom: var(--space-3);
+		color: var(--color-heading);
+	}
 
-  .service-card__desc {
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-4);
-    line-height: 1.6;
-    font-size: var(--text-base);
-  }
+	.service-card__desc {
+		color: var(--color-text-muted);
+		margin-bottom: var(--space-4);
+		line-height: 1.6;
+		font-size: var(--text-base);
+	}
 
-  .service-card__bullets {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+	.service-card__bullets {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
-  .service-card__bullets li {
-    color: var(--color-text-muted);
-    font-size: var(--text-sm);
-    padding: var(--space-1) 0;
-    padding-left: var(--space-4);
-    position: relative;
-    line-height: 1.5;
-  }
+	.service-card__bullets li {
+		color: var(--color-text-muted);
+		font-size: var(--text-sm);
+		padding: var(--space-1) 0;
+		padding-left: var(--space-4);
+		position: relative;
+		line-height: 1.5;
+	}
 
-  .service-card__bullets li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-    font-size: var(--text-xs);
-    top: 50%;
-    transform: translateY(-50%);
-  }
+	.service-card__bullets li::before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: var(--color-accent);
+		font-size: var(--text-xs);
+		top: 50%;
+		transform: translateY(-50%);
+	}
 
-  .services-cta {
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--space-12);
-    text-align: center;
-  }
+	.services-cta {
+		border-top: 1px solid var(--color-border);
+		padding-top: var(--space-12);
+		text-align: center;
+	}
 
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: var(--space-3) var(--space-8);
-    border-radius: var(--radius-md, 0.5rem);
-    font-weight: 600;
-    font-size: var(--text-base);
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-    margin: var(--space-2);
-  }
+	.cta-btn {
+		display: inline-flex;
+		align-items: center;
+		padding: var(--space-3) var(--space-8);
+		border-radius: var(--radius-md, 0.5rem);
+		font-weight: 600;
+		font-size: var(--text-base);
+		text-decoration: none;
+		transition: opacity 0.2s ease;
+		margin: var(--space-2);
+	}
 
-  .cta-btn:hover {
-    opacity: 0.85;
-  }
+	.cta-btn:hover {
+		opacity: 0.85;
+	}
 
-  .cta-btn:not(.cta-btn--secondary) {
-    background: var(--color-accent);
-    color: #fff;
-  }
+	.cta-btn:not(.cta-btn--secondary) {
+		background: var(--color-accent);
+		color: #fff;
+	}
 
-  .cta-btn--secondary {
-    border: 1px solid var(--color-border);
-    color: var(--color-text);
-  }
+	.cta-btn--secondary {
+		border: 1px solid var(--color-border);
+		color: var(--color-text);
+	}
 </style>
