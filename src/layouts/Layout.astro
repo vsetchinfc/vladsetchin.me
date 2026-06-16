@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import SEOHead from "../components/SEOHead.astro";
 import { SITE } from "../data/site";
+import ThemeToggle from "../components/ThemeToggle";
 
 export interface Props {
 	title?: string;
@@ -40,6 +41,12 @@ const personSchema = JSON.stringify({
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 		<link rel="manifest" href={`${base}site.webmanifest`} />
 		<meta name="generator" content={Astro.generator} />
@@ -79,11 +86,20 @@ const personSchema = JSON.stringify({
 		<header class="site-header">
 			<nav class="container nav" aria-label="Main navigation">
 				<a href={base} class="nav__brand" aria-label="Vlad Setchin - home">
-					Vlad Setchin
+					vlad<span class="nav__brand-dim">.</span>setchin<span class="nav__brand-prompt">$</span> me
 				</a>
 				<div class="nav__links">
 					<a href={`${base}#about`} class:list={["nav__link"]}>About</a>
 					<a href={`${base}#skills`} class:list={["nav__link"]}>Skills</a>
+					<a
+						href={`${base}experience/`}
+						class:list={[
+							"nav__link",
+							{
+								"nav__link--active": currentPath.startsWith(`${base}experience`),
+							},
+						]}>Experience</a
+					>
 					<a
 						href={`${base}blog/`}
 						class:list={[
@@ -110,7 +126,7 @@ const personSchema = JSON.stringify({
 						]}>Services</a
 					>
 					<a href={`${base}#contact`} class:list={["nav__link"]}>Contact</a>
-					<slot name="theme-toggle" />
+					<slot name="theme-toggle"><ThemeToggle client:load /></slot>
 				</div>
 			</nav>
 		</header>
@@ -125,7 +141,7 @@ const personSchema = JSON.stringify({
 				style="padding-top: var(--space-8); padding-bottom: var(--space-8); text-align: center;"
 			>
 				<p style="color: var(--color-text-muted); font-size: var(--text-sm);">
-					┬® {new Date().getFullYear()} Vlad Setchin. All rights reserved.
+					© {new Date().getFullYear()} Vlad Setchin. All rights reserved.
 				</p>
 			</div>
 		</footer>
@@ -151,11 +167,22 @@ const personSchema = JSON.stringify({
 	}
 
 	.nav__brand {
-		font-weight: 700;
-		font-size: var(--text-lg);
+		font-weight: 600;
+		font-size: var(--text-base);
 		color: var(--color-heading);
 		text-decoration: none;
 		flex-shrink: 0;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.nav__brand-dim {
+		color: var(--color-accent);
+	}
+
+	.nav__brand-prompt {
+		color: var(--color-accent);
+		margin-left: var(--space-1);
 	}
 
 	.nav__brand:hover {

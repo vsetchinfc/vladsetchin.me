@@ -4,18 +4,20 @@ import ThemeToggle from "../components/ThemeToggle";
 import Hero from "../components/sections/Hero.astro";
 import About from "../components/sections/About.astro";
 import Skills from "../components/sections/Skills.astro";
+import Experience from "../components/sections/Experience.astro";
 import Contact from "../components/sections/Contact.astro";
 import { SERVICES } from "../data/services";
 ---
 
 <Layout
-	title="Vlad Setchin - Software Engineer & Consultant"
-	description="Software Engineer with expertise in Angular, TypeScript, and cloud technologies. Personal site, blog, and portfolio."
+	title="Vlad Setchin — Senior .NET Engineer & AI Systems Architect"
+	description="Senior .NET/C# and Azure engineer with a growing focus on production AI agent systems. Available for senior roles, freelance, and consulting."
 >
 	<ThemeToggle slot="theme-toggle" client:load />
 	<Hero />
 	<About />
 	<Skills />
+	<Experience />
 
 	<!-- Services teaser -->
 	<section id="services" class="section">

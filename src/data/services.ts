@@ -1,4 +1,3 @@
-// TODO: owner copy — update services to match your actual offerings
 export interface Service {
   title: string;
   description: string;
@@ -7,36 +6,36 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    title: 'Software Engineering', // TODO: owner copy
+    title: 'AI Agent Development',
     description:
-      'Full-stack web application development with Angular, Vue, React, and .NET. From architecture to production.',
+      'Design and build production AI agent systems — from single-agent tools to multi-agent delivery pipelines with memory, handoff contracts, and failure-mode handling.',
     bullets: [
-      'Custom web application development',
-      'Frontend architecture and design systems',
+      'Multi-agent system design and architecture',
+      'Claude API / Anthropic SDK integration',
+      'MCP server development',
+      'Agent memory and state management',
+    ],
+  },
+  {
+    title: 'Software Engineering',
+    description:
+      '.NET/C# and Azure backend engineering, API design, and full-stack delivery across Angular, React, and TypeScript. From architecture to production.',
+    bullets: [
+      'Azure cloud architecture and integration',
       'API design, integration, and migration',
+      'Frontend development (Angular, React, TypeScript)',
       'Code review and technical leadership',
     ],
   },
   {
     title: 'Technical Consulting',
     description:
-      'Independent guidance on technology choices, engineering practices, and delivery process improvement.',
+      'Independent guidance on technology choices, AI strategy, and engineering practices. Particularly useful for teams evaluating LLM/agent adoption.',
     bullets: [
-      'Technology stack evaluation and selection',
-      'Code quality and architecture audits',
-      'Engineering process and Agile practices',
+      'AI readiness and stack evaluation',
+      'Architecture audits and ADR documentation',
+      'Engineering process and delivery improvement',
       'Team structure and hiring guidance',
-    ],
-  },
-  {
-    title: 'Mentoring & Training',
-    description:
-      'One-on-one mentoring and team workshops for developers looking to grow their skills and confidence.',
-    bullets: [
-      'Junior and mid-level developer mentoring',
-      'Angular / TypeScript deep-dives',
-      'TDD and clean code practices',
-      'Career guidance for software engineers',
     ],
   },
 ];

@@ -1,9 +1,8 @@
-// TODO: owner copy — update all values to match your actual details
 export const SITE = {
   title: 'vladsetchin.me',
-  tagline: 'Software Engineer & Consultant', // TODO: owner copy
+  tagline: 'Senior .NET Engineer & AI Systems Architect',
   description:
-    'Software Engineer with expertise in Angular, TypeScript, and cloud technologies. Based in Australia.',
+    'Senior software engineer specialising in .NET/C#, Azure, and AI agent systems. Available for freelance and consulting engagements. Based in Australia.',
   url: 'https://vladsetchin.me',
   author: 'Vlad Setchin',
   github: 'https://github.com/vsetchinfc',

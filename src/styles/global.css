@@ -1,20 +1,20 @@
 /* Design tokens for vladsetchin.me */
 
 :root {
-  /* TODO: owner  replace accent with brand colour */
-  --color-accent: #6366f1;
-  
-  /* Dark theme (default) */
-  --color-bg: #0a0a0a;
-  --color-surface: #1a1a1a;
-  --color-border: #2a2a2a;
-  --color-text: #e5e5e5;
-  --color-text-muted: #a3a3a3;
-  --color-heading: #ffffff;
-  
-  /* Type scale */
-  --font-base: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Consolas', 'Monaco', 'Courier New', monospace;
+  /* Terminal green accent */
+  --color-accent: #00e08a;
+
+  /* Dark theme (default) — near-black with a faint green undertone */
+  --color-bg: #0a0e0c;
+  --color-surface: #101512;
+  --color-border: rgba(0, 224, 138, 0.16);
+  --color-text: #d4ded8;
+  --color-text-muted: #7d8c84;
+  --color-heading: #eafff2;
+
+  /* Type scale — monospace throughout for the terminal aesthetic */
+  --font-base: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -24,7 +24,7 @@
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
-  
+
   /* Spacing scale */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -35,25 +35,35 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
-  
+
   /* Layout */
   --max-width: 1200px;
-  --radius: 0.5rem;
-  --radius-sm: 0.25rem;
-  --radius-lg: 0.75rem;
-  
+  --radius: 0.25rem;
+  --radius-sm: 0.125rem;
+  --radius-lg: 0.375rem;
+
   /* Focus ring */
-  --focus-ring: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  --focus-ring: 0 0 0 3px rgba(0, 224, 138, 0.35);
+  /* Card variables — flat, bordered, no ambient shadow (terminal-window style) */
+  --card-border: var(--color-border);
+  --card-shadow: none;
+  --card-hover-shadow: 0 0 0 1px var(--color-accent), 0 0 24px rgba(0, 224, 138, 0.1);
 }
 
 /* Light theme */
 [data-theme='light'] {
-  --color-bg: #ffffff;
-  --color-surface: #f5f5f5;
-  --color-border: #e5e5e5;
-  --color-text: #262626;
-  --color-text-muted: #737373;
-  --color-heading: #0a0a0a;
+  /* Darker green for contrast on white */
+  --color-accent: #067a4e;
+  --color-bg: #f7f9f7;
+  --color-surface: #eef2ef;
+  --color-border: rgba(6, 122, 78, 0.2);
+  --color-text: #16201b;
+  --color-text-muted: #4b5d54;
+  --color-heading: #0c1410;
+  /* Card variables for light theme */
+  --card-border: var(--color-border);
+  --card-shadow: none;
+  --card-hover-shadow: 0 0 0 1px var(--color-accent), 0 0 24px rgba(6, 122, 78, 0.08);
 }
 
 /* Base styles */
@@ -79,6 +89,19 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+/* Subtle grain texture — terminal-screen feel, kept low-opacity so it never hurts readability */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 h1,
@@ -180,11 +203,55 @@ code {
   padding: var(--space-24) 0;
 }
 
+/* Card / panel styles to make boxes stand out */
+.card,
+.teaser-card,
+.project-card,
+.post-link,
+.post-item article {
+  background: var(--color-surface);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.teaser-card {
+  padding: var(--space-6);
+}
+
+.project-card {
+  padding: var(--space-6);
+}
+
+.post-link {
+  display: block;
+}
+
+.card:hover,
+.teaser-card:hover,
+.project-card:hover,
+.post-link:hover,
+.post-item article:hover {
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--color-accent);
+}
+
 .section__title {
   font-size: var(--text-3xl);
   margin-bottom: var(--space-12);
   position: relative;
   padding-bottom: var(--space-4);
+}
+
+.section__title::before {
+  content: '// ';
+  color: var(--color-text-muted);
+  font-weight: 400;
 }
 
 .section__title::after {
