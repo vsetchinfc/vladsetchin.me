@@ -1,10 +1,14 @@
 ---
 import { SITE } from '../../data/site';
+import Icon from '../icons/Icon.astro';
 ---
 
 <section id="contact" class="section">
   <div class="container">
-    <h2 class="section__title">Get in touch</h2>
+    <h2 class="section__title">
+      <span class="section__title-icon"><Icon name="mail" size={18} /></span>
+      <span class="section__title-text">Get in touch</span>
+    </h2>
     <p class="contact__intro">
       Open to senior engineering roles, AI agent development engagements, and consulting work. Based in Australia — remote worldwide.
     </p>

@@ -1,5 +1,8 @@
+import type { IconName } from './icons';
+
 export interface Service {
   title: string;
+  icon: IconName;
   description: string;
   bullets: string[];
 }
@@ -7,6 +10,7 @@ export interface Service {
 export const SERVICES: Service[] = [
   {
     title: 'AI Agent Development',
+    icon: 'bot',
     description:
       'Design and build production AI agent systems — from single-agent tools to multi-agent delivery pipelines with memory, handoff contracts, and failure-mode handling.',
     bullets: [
@@ -18,6 +22,7 @@ export const SERVICES: Service[] = [
   },
   {
     title: 'Software Engineering',
+    icon: 'layers',
     description:
       '.NET/C# and Azure backend engineering, API design, and full-stack delivery across Angular, React, and TypeScript. From architecture to production.',
     bullets: [
@@ -29,6 +34,7 @@ export const SERVICES: Service[] = [
   },
   {
     title: 'Technical Consulting',
+    icon: 'compass',
     description:
       'Independent guidance on technology choices, AI strategy, and engineering practices. Particularly useful for teams evaluating LLM/agent adoption.',
     bullets: [

@@ -1,54 +1,138 @@
 ---
 import { SITE } from "../../data/site";
+import { ICONS } from "../../data/icons";
+
+const nodes = [
+	{ icon: "cloud" as const, x: 180, y: 56, label: "Cloud & DevOps" },
+	{ icon: "database" as const, x: 296, y: 106, label: "Database" },
+	{ icon: "cpu" as const, x: 312, y: 228, label: "AI & Agents" },
+	{ icon: "code" as const, x: 222, y: 314, label: "Frontend" },
+	{ icon: "terminal" as const, x: 64, y: 284, label: "Backend" },
+	{ icon: "gear" as const, x: 56, y: 124, label: "Practices" },
+];
 ---
 
 <section id="hero" class="hero">
 	<div class="container hero__inner">
-		<div class="terminal">
-			<div class="terminal__bar">
-				<span class="terminal__dot terminal__dot--red"></span>
-				<span class="terminal__dot terminal__dot--yellow"></span>
-				<span class="terminal__dot terminal__dot--green"></span>
-				<span class="terminal__title">vlad@agistra — zsh</span>
-			</div>
-			<div class="terminal__body">
-				<p class="terminal__prompt">whoami</p>
-
-				<h1 class="hero__eyebrow">
-					Hi, I'm <span class="hero__name">Vlad</span>
-				</h1>
-
-				<p class="hero__tagline">{SITE.tagline}</p>
-				<p class="hero__bio">
-					<span class="hero__bio-marker">#</span> .NET/C# and Azure engineer with a growing focus
-					on production AI agent systems. Available for senior engineering roles, freelance,
-					and consulting.
-				</p>
-				<p class="terminal__prompt">stats --summary</p>
-				<dl class="hero__stats">
-					<div class="hero__stat">
-						<dt>years_experience</dt>
-						<dd>25+</dd>
-					</div>
-					<div class="hero__stat">
-						<dt>test_coverage</dt>
-						<dd>96%+</dd>
-					</div>
-					<div class="hero__stat">
-						<dt>projects_shipped</dt>
-						<dd>150+</dd>
-					</div>
-					<div class="hero__stat">
-						<dt>industries</dt>
-						<dd>6</dd>
-					</div>
-				</dl>
-
-				<div class="hero__ctas">
-					<a href="#projects" class="btn btn--primary">View work</a>
-					<a href="#contact" class="btn btn--secondary">Get in touch</a>
+		<div class="hero__layout">
+			<div class="terminal">
+				<div class="terminal__bar">
+					<span class="terminal__dot terminal__dot--red"></span>
+					<span class="terminal__dot terminal__dot--yellow"></span>
+					<span class="terminal__dot terminal__dot--green"></span>
+					<span class="terminal__title">vlad@agistra — zsh</span>
 				</div>
-				<p class="terminal__cursor" aria-hidden="true">_</p>
+				<div class="terminal__body">
+					<p class="terminal__prompt">whoami</p>
+
+					<h1 class="hero__eyebrow">
+						Hi, I'm <span class="hero__name">Vlad</span>
+					</h1>
+
+					<p class="hero__tagline">{SITE.tagline}</p>
+					<p class="hero__bio">
+						<span class="hero__bio-marker">#</span> .NET/C# and Azure engineer with
+						a growing focus on production AI agent systems. Available for senior engineering
+						roles, freelance, and consulting.
+					</p>
+					<p class="terminal__prompt">stats --summary</p>
+					<dl class="hero__stats">
+						<div class="hero__stat">
+							<dt>years_experience</dt>
+							<dd>25+</dd>
+						</div>
+						<div class="hero__stat">
+							<dt>test_coverage</dt>
+							<dd>96%+</dd>
+						</div>
+						<div class="hero__stat">
+							<dt>projects_shipped</dt>
+							<dd>150+</dd>
+						</div>
+						<div class="hero__stat">
+							<dt>industries</dt>
+							<dd>6</dd>
+						</div>
+					</dl>
+
+					<div class="hero__ctas">
+						<a href="#projects" class="btn btn--primary">View work</a>
+						<a href="#contact" class="btn btn--secondary">Get in touch</a>
+					</div>
+					<p class="terminal__cursor" aria-hidden="true">_</p>
+				</div>
+			</div>
+
+			<div class="hero__graphic" aria-hidden="true">
+				<svg viewBox="0 0 360 360" class="constellation" role="presentation">
+					<defs>
+						{
+							Object.entries(ICONS).map(([key, icon]) => (
+								<symbol
+									id={`hero-icon-${key}`}
+									viewBox={icon.viewBox}
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									set:html={icon.markup}
+								/>
+							))
+						}
+					</defs>
+
+					<g class="constellation__lines">
+						{nodes.map((n) => <line x1="180" y1="180" x2={n.x} y2={n.y} />)}
+					</g>
+
+					<g class="constellation__deco">
+						<rect
+							x="244"
+							y="60"
+							width="8"
+							height="8"
+							transform="rotate(45 248 64)"></rect>
+						<rect
+							x="46"
+							y="200"
+							width="6"
+							height="6"
+							transform="rotate(45 49 203)"></rect>
+						<rect
+							x="270"
+							y="280"
+							width="7"
+							height="7"
+							transform="rotate(45 273 283)"></rect>
+					</g>
+
+					<g class="constellation__node constellation__node--center">
+						<circle cx="180" cy="180" r="36"></circle>
+						<text x="180" y="187">{"{ }"}</text>
+					</g>
+
+					{
+						nodes.map((n) => (
+							<g
+								class="constellation__node"
+								transform={`translate(${n.x} ${n.y})`}
+							>
+								<circle r="22" />
+								<use
+									href={`#hero-icon-${n.icon}`}
+									x="-10"
+									y="-10"
+									width="20"
+									height="20"
+								/>
+								<text class="constellation__label" y="34">
+									{n.label}
+								</text>
+							</g>
+						))
+					}
+				</svg>
 			</div>
 		</div>
 	</div>
@@ -60,11 +144,39 @@ import { SITE } from "../../data/site";
 		min-height: 80vh;
 		display: flex;
 		align-items: center;
+		overflow: hidden;
 	}
 
 	.hero__inner {
 		max-width: var(--content-width, 760px);
 		position: relative;
+	}
+
+	.hero__layout {
+		display: grid;
+		grid-template-columns: 1fr;
+		align-items: center;
+		gap: var(--space-8);
+	}
+
+	.hero__graphic {
+		display: none;
+	}
+
+	@media (min-width: 1100px) {
+		.hero__inner {
+			max-width: 1320px;
+		}
+
+		.hero__layout {
+			grid-template-columns: minmax(0, 720px) 1fr;
+		}
+
+		.hero__graphic {
+			display: block;
+			align-self: start;
+			margin-top: -1.5rem;
+		}
 	}
 
 	.hero__inner::before {
@@ -334,6 +446,87 @@ import { SITE } from "../../data/site";
 
 		.terminal__body {
 			padding: var(--space-6) var(--space-5) var(--space-5);
+		}
+	}
+
+	.constellation {
+		width: 100%;
+		max-width: 520px;
+		height: auto;
+		margin: 0 auto 0 0;
+		overflow: visible;
+		display: block;
+		animation: terminal-reveal 0.6s ease-out 0.85s backwards;
+	}
+
+	.constellation__lines line {
+		stroke: var(--color-border);
+		stroke-width: 1;
+	}
+
+	.constellation__deco rect {
+		stroke: var(--color-accent);
+		stroke-width: 1;
+		fill: none;
+		opacity: 0.4;
+	}
+
+	.constellation__node circle {
+		fill: var(--color-surface);
+		stroke: var(--color-border);
+		stroke-width: 1.5;
+		transition: stroke 0.2s ease;
+	}
+
+	.constellation__node:hover circle {
+		stroke: var(--color-accent);
+	}
+
+	.constellation__node use {
+		color: var(--color-accent);
+		pointer-events: none;
+	}
+
+	.constellation__node text {
+		font-family: var(--font-mono);
+		fill: var(--color-accent);
+		text-anchor: middle;
+		pointer-events: none;
+	}
+
+	.constellation__node--center circle {
+		stroke: var(--color-accent);
+		animation: constellation-pulse 3s ease-in-out infinite;
+	}
+
+	.constellation__node--center text {
+		font-size: 18px;
+	}
+
+	.constellation__label {
+		font-size: 9px;
+		fill: var(--color-text-muted) !important;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	@keyframes constellation-pulse {
+		0%,
+		100% {
+			opacity: 0.6;
+		}
+		50% {
+			opacity: 1;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.constellation {
+			animation: none;
+		}
+
+		.constellation__node--center circle {
+			animation: none;
 		}
 	}
 </style>

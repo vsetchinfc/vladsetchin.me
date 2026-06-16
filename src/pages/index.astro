@@ -7,6 +7,7 @@ import Skills from "../components/sections/Skills.astro";
 import Experience from "../components/sections/Experience.astro";
 import Contact from "../components/sections/Contact.astro";
 import { SERVICES } from "../data/services";
+import Icon from "../components/icons/Icon.astro";
 ---
 
 <Layout
@@ -22,11 +23,17 @@ import { SERVICES } from "../data/services";
 	<!-- Services teaser -->
 	<section id="services" class="section">
 		<div class="container">
-			<h2 class="section__title">Services</h2>
+			<h2 class="section__title">
+				<span class="section__title-icon"><Icon name="gear" size={18} /></span>
+				<span class="section__title-text">Services</span>
+			</h2>
 			<div class="teaser-grid">
 				{
 					SERVICES.map((s) => (
 						<div class="teaser-card">
+							<div class="teaser-card__icon">
+								<Icon name={s.icon} size={24} />
+							</div>
 							<h3 class="teaser-card__title">{s.title}</h3>
 							<p class="teaser-card__desc">{s.description}</p>
 						</div>
@@ -54,6 +61,19 @@ import { SERVICES } from "../data/services";
 		padding: var(--space-6);
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg, 0.75rem);
+	}
+
+	.teaser-card__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm, 0.25rem);
+		color: var(--color-accent);
+		margin-bottom: var(--space-3);
+		background: var(--color-bg);
 	}
 
 	.teaser-card__title {

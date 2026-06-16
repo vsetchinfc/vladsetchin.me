@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/icons/Icon.astro";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -23,7 +24,10 @@ function formatDate(date: Date) {
 		class="container"
 		style="padding-top: var(--space-16); padding-bottom: var(--space-16);"
 	>
-		<h1 style="margin-bottom: var(--space-2);">Blog</h1>
+		<h1 class="section__title" style="margin-bottom: var(--space-2);">
+			<span class="section__title-icon"><Icon name="pen" size={18} /></span>
+			<span class="section__title-text">Blog</span>
+		</h1>
 		<p
 			style="color: var(--color-text-muted); margin-bottom: var(--space-12); font-size: var(--text-lg);"
 		>
@@ -44,6 +48,9 @@ function formatDate(date: Date) {
 								class="post-link"
 							>
 								<article>
+									<div class="post-icon">
+										<Icon name="pen" size={20} />
+									</div>
 									<time
 										class="post-date"
 										datetime={post.data.pubDate.toISOString()}
@@ -95,6 +102,19 @@ function formatDate(date: Date) {
 		border-color: var(--color-accent);
 		transform: translateY(-2px);
 		opacity: 1;
+	}
+
+	.post-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm, 0.25rem);
+		color: var(--color-accent);
+		margin-bottom: var(--space-3);
+		background: var(--color-bg);
 	}
 
 	.post-date {

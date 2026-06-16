@@ -1,17 +1,22 @@
 ---
 import { EXPERIENCE } from "../../data/experience";
+import Icon from "../icons/Icon.astro";
 
 const featured = EXPERIENCE.slice(0, 3);
 ---
 
 <section id="experience" class="section">
 	<div class="container">
-		<h2 class="section__title">Experience</h2>
+		<h2 class="section__title">
+			<span class="section__title-icon"><Icon name="briefcase" size={18} /></span>
+			<span class="section__title-text">Experience</span>
+		</h2>
 		<div class="experience__list">
 			{
 				featured.map((role) => (
 					<div class="experience__item">
 						<div class="experience__period">{role.period}</div>
+						<div class="experience__marker"><span class="experience__dot"></span></div>
 						<div class="experience__body">
 							<h3 class="experience__role">
 								{role.title} <span class="experience__company">@ {role.company}</span>
@@ -35,6 +40,7 @@ const featured = EXPERIENCE.slice(0, 3);
 
 <style>
 	.experience__list {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-8);
@@ -42,10 +48,20 @@ const featured = EXPERIENCE.slice(0, 3);
 		margin-bottom: var(--space-8);
 	}
 
+	.experience__list::before {
+		content: "";
+		position: absolute;
+		top: 6px;
+		bottom: 6px;
+		left: calc(140px + var(--space-6) + 10px);
+		width: 1px;
+		background: var(--color-border);
+	}
+
 	.experience__item {
 		display: grid;
-		grid-template-columns: 140px 1fr;
-		gap: var(--space-6);
+		grid-template-columns: 140px 20px 1fr;
+		column-gap: var(--space-6);
 		padding-bottom: var(--space-8);
 		border-bottom: 1px solid var(--color-border);
 	}
@@ -59,6 +75,23 @@ const featured = EXPERIENCE.slice(0, 3);
 		font-size: var(--text-sm);
 		color: var(--color-text-muted);
 		white-space: nowrap;
+	}
+
+	.experience__marker {
+		position: relative;
+		display: flex;
+		justify-content: center;
+	}
+
+	.experience__dot {
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-bg), 0 0 8px rgba(0, 224, 138, 0.45);
+		margin-top: 0.35em;
+		position: relative;
+		z-index: 1;
 	}
 
 	.experience__role {
@@ -109,6 +142,11 @@ const featured = EXPERIENCE.slice(0, 3);
 		.experience__item {
 			grid-template-columns: 1fr;
 			gap: var(--space-2);
+		}
+
+		.experience__marker,
+		.experience__list::before {
+			display: none;
 		}
 	}
 </style>

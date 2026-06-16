@@ -2,6 +2,7 @@
 import { EXPERIENCE } from "../../data/experience";
 import { SITE } from "../../data/site";
 import Layout from "../../layouts/Layout.astro";
+import Icon from "../../components/icons/Icon.astro";
 ---
 
 <Layout
@@ -12,7 +13,10 @@ import Layout from "../../layouts/Layout.astro";
 		class="container"
 		style="padding-top: var(--space-16); padding-bottom: var(--space-24);"
 	>
-		<h1 style="margin-bottom: var(--space-4);">Experience</h1>
+		<h1 class="section__title" style="margin-bottom: var(--space-4);">
+			<span class="section__title-icon"><Icon name="briefcase" size={18} /></span>
+			<span class="section__title-text">Experience</span>
+		</h1>
 		<p class="experience-intro">
 			25+ years of full-stack engineering across medical, educational, field
 			service, utilities, retail, and wholesale — from startups to enterprise
@@ -26,6 +30,7 @@ import Layout from "../../layouts/Layout.astro";
 						<div class="timeline__meta">
 							<span class="timeline__period">{role.period}</span>
 						</div>
+						<div class="timeline__marker"><span class="timeline__dot"></span></div>
 						<div class="timeline__body">
 							<h2 class="timeline__role">{role.title}</h2>
 							<p class="timeline__company">{role.company}</p>
@@ -74,16 +79,27 @@ import Layout from "../../layouts/Layout.astro";
 	}
 
 	.timeline {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-12);
 		margin-bottom: var(--space-16);
 	}
 
+	.timeline::before {
+		content: "";
+		position: absolute;
+		top: 6px;
+		bottom: 6px;
+		left: calc(160px + var(--space-6) + 10px);
+		width: 1px;
+		background: var(--color-border);
+	}
+
 	.timeline__item {
 		display: grid;
-		grid-template-columns: 160px 1fr;
-		gap: var(--space-8);
+		grid-template-columns: 160px 20px 1fr;
+		column-gap: var(--space-6);
 		padding-bottom: var(--space-12);
 		border-bottom: 1px solid var(--color-border);
 	}
@@ -97,6 +113,23 @@ import Layout from "../../layouts/Layout.astro";
 		font-size: var(--text-sm);
 		color: var(--color-text-muted);
 		white-space: nowrap;
+	}
+
+	.timeline__marker {
+		position: relative;
+		display: flex;
+		justify-content: center;
+	}
+
+	.timeline__dot {
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-bg), 0 0 8px rgba(0, 224, 138, 0.45);
+		margin-top: 0.3em;
+		position: relative;
+		z-index: 1;
 	}
 
 	.timeline__role {
@@ -200,6 +233,11 @@ import Layout from "../../layouts/Layout.astro";
 		.timeline__item {
 			grid-template-columns: 1fr;
 			gap: var(--space-3);
+		}
+
+		.timeline__marker,
+		.timeline::before {
+			display: none;
 		}
 	}
 </style>
