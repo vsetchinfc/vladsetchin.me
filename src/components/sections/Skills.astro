@@ -30,13 +30,23 @@ import Icon from '../icons/Icon.astro';
 <style>
   .skills__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-8) var(--space-12);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-6);
     margin-top: var(--space-6);
   }
 
   .skills__group {
     min-width: 0;
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    background: var(--color-surface);
+    transition: border-color 0.15s ease, transform 0.12s ease;
+  }
+
+  .skills__group:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
   }
 
   .skills__category {
@@ -71,7 +81,7 @@ import Icon from '../icons/Icon.astro';
     padding: var(--space-1) var(--space-3);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
-    background: var(--color-surface);
+    background: var(--color-bg);
     line-height: 1.4;
     white-space: normal;
     overflow-wrap: break-word;

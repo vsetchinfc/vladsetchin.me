@@ -47,25 +47,38 @@ function formatDate(date: Date) {
 								href={`${import.meta.env.BASE_URL}blog/${post.slug}/`}
 								class="post-link"
 							>
-								<article>
-									<div class="post-icon">
-										<Icon name="pen" size={20} />
-									</div>
-									<time
-										class="post-date"
-										datetime={post.data.pubDate.toISOString()}
-									>
-										{formatDate(post.data.pubDate)}
-									</time>
-									<h2 class="post-title">{post.data.title}</h2>
-									<p class="post-description">{post.data.description}</p>
-									{post.data.tags.length > 0 && (
-										<div class="post-tags" aria-label="Tags">
-											{post.data.tags.map((tag) => (
-												<span class="tag">{tag}</span>
-											))}
+								<article class="post-card">
+									{post.data.thumbnail || post.data.heroImage ? (
+										<div class="post-thumb">
+											<img
+												src={`${import.meta.env.BASE_URL}${post.data.thumbnail ?? post.data.heroImage}`}
+												alt=""
+												loading="lazy"
+												style={post.data.heroImageLight ? "--hero-pre-filter: invert(1);" : undefined}
+											/>
+										</div>
+									) : (
+										<div class="post-thumb post-thumb--fallback">
+											<Icon name="pen" size={28} />
 										</div>
 									)}
+									<div class="post-body">
+										<time
+											class="post-date"
+											datetime={post.data.pubDate.toISOString()}
+										>
+											{formatDate(post.data.pubDate)}
+										</time>
+										<h2 class="post-title">{post.data.title}</h2>
+										<p class="post-description">{post.data.description}</p>
+										{post.data.tags.length > 0 && (
+											<div class="post-tags" aria-label="Tags">
+												{post.data.tags.map((tag) => (
+													<span class="tag">{tag}</span>
+												))}
+											</div>
+										)}
+									</div>
 								</article>
 							</a>
 						</li>
@@ -88,7 +101,8 @@ function formatDate(date: Date) {
 
 	.post-link {
 		display: block;
-		padding: var(--space-6);
+		padding: 0;
+		overflow: hidden;
 		border: 1px solid var(--color-border);
 		border-radius: var(--radius-lg, 0.75rem);
 		text-decoration: none;
@@ -104,17 +118,36 @@ function formatDate(date: Date) {
 		opacity: 1;
 	}
 
-	.post-icon {
-		display: inline-flex;
+	.post-card {
+		display: flex;
+		align-items: stretch;
+	}
+
+	.post-thumb {
+		flex-shrink: 0;
+		width: 220px;
+	}
+
+	.post-thumb img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: var(--hero-pre-filter, ) grayscale(1) sepia(1) hue-rotate(100deg) saturate(2.4) brightness(0.85) contrast(1.1);
+	}
+
+	.post-thumb--fallback {
+		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 36px;
-		height: 36px;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-sm, 0.25rem);
 		color: var(--color-accent);
-		margin-bottom: var(--space-3);
-		background: var(--color-bg);
+		background: var(--color-surface);
+	}
+
+	.post-body {
+		flex: 1;
+		min-width: 0;
+		padding: var(--space-6);
 	}
 
 	.post-date {
@@ -149,5 +182,16 @@ function formatDate(date: Date) {
 		background: var(--color-surface);
 		color: var(--color-text-muted);
 		border: 1px solid var(--color-border);
+	}
+
+	@media (max-width: 640px) {
+		.post-card {
+			flex-direction: column;
+		}
+
+		.post-thumb {
+			width: 100%;
+			height: 180px;
+		}
 	}
 </style>
