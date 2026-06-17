@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://vladsetchin.me',
-	base: '/vladsetchin.me/',
+	base: '/',
 	integrations: [react(), sitemap()],
 	output: 'static',
 });

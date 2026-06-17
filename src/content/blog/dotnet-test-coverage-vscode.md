@@ -32,7 +32,7 @@ That's the whole command. No MSBuild properties, no explicit output-format flags
 
 Point it at that cobertura file. Enable "Show Gutter Coverage" and "Show Line Coverage" in settings. Covered lines turn green in the gutter, uncovered lines turn red, and the loop closes — write a test, run it, see exactly what it touched, right next to the code.
 
-![Coverage Gutters showing covered lines in green and an uncovered branch in red, directly in the editor gutter](/vladsetchin.me/images/blog/coverage-sample.png)
+![Coverage Gutters showing covered lines in green and an uncovered branch in red, directly in the editor gutter](/images/blog/coverage-sample.png)
 
 ## One thing worth knowing
 
