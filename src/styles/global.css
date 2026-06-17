@@ -162,6 +162,13 @@ code {
   border-radius: var(--radius-sm);
 }
 
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
 /* Skip link for accessibility */
 .skip-link {
   position: absolute;
