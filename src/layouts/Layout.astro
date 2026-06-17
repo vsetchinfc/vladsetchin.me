@@ -3,6 +3,7 @@ import "../styles/global.css";
 import SEOHead from "../components/SEOHead.astro";
 import { SITE } from "../data/site";
 import ThemeToggle from "../components/ThemeToggle";
+import Footer from "../components/Footer.astro";
 
 export interface Props {
 	title?: string;
@@ -196,11 +197,9 @@ const personSchema = JSON.stringify({
 		<footer class="site-footer">
 			<div
 				class="container"
-				style="padding-top: var(--space-8); padding-bottom: var(--space-8); text-align: center;"
+				style="padding-top: var(--space-8); padding-bottom: var(--space-8);"
 			>
-				<p style="color: var(--color-text-muted); font-size: var(--text-sm);">
-					© {new Date().getFullYear()} Vlad Setchin. All rights reserved.
-				</p>
+				<Footer />
 			</div>
 		</footer>
 	</body>
