@@ -1,0 +1,37 @@
+---
+// Footer component with attribution link
+---
+
+<footer class="footer">
+	<a
+		href="https://github.com/vsetchinfc/agistra.dev"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="built-with-link"
+		>Built with agistra.dev</a
+	>
+</footer>
+
+<style>
+	.footer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: var(--space-4, 1rem) 0;
+	}
+
+	.built-with-link {
+		color: var(--color-text-muted);
+		font-size: var(--text-xs);
+		text-decoration: none;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-sm, 0.25rem);
+		padding: var(--space-1) var(--space-3);
+		transition: color 0.2s ease, border-color 0.2s ease;
+	}
+
+	.built-with-link:hover {
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+</style>

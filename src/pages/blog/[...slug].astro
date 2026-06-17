@@ -90,13 +90,6 @@ const blogPostSchema = JSON.stringify({
 			<a href={`${import.meta.env.BASE_URL}blog/`} class="back-link"
 				>← Back to blog</a
 			>
-			<a
-				href="https://github.com/vsetchinfc/agistra.dev"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="built-with-link"
-				>Built with agistra.dev</a
-			>
 		</footer>
 
 		<GiscusComments client:visible />
@@ -179,21 +172,6 @@ const blogPostSchema = JSON.stringify({
 	.back-link {
 		color: var(--color-text-muted);
 		font-size: var(--text-sm);
-	}
-
-	.built-with-link {
-		color: var(--color-text-muted);
-		font-size: var(--text-xs);
-		text-decoration: none;
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-sm, 0.25rem);
-		padding: var(--space-1) var(--space-3);
-		transition: color 0.2s ease, border-color 0.2s ease;
-	}
-
-	.built-with-link:hover {
-		color: var(--color-accent);
-		border-color: var(--color-accent);
 	}
 
 	/* Prose styles for blog content */
