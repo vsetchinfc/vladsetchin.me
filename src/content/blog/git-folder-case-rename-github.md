@@ -3,6 +3,8 @@ title: 'Git ignores folder case changes — here''s how to actually fix it on Gi
 description: 'Renamed a folder from About to about locally and Git shrugged. Two git mv commands fix it on the remote — and why GitHub Pages cares about casing at all.'
 pubDate: 2026-06-18
 tags: ['git', 'github', 'github-pages']
+heroImage: 'images/blog/git-folder-case-rename-github.png'
+thumbnail: 'images/blog/git-folder-case-rename-github-square.png'
 draft: false
 ---
 
