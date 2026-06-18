@@ -1,7 +1,7 @@
 ---
 title: 'Human Voice — Teaching AI to Stop Sounding Like AI'
 description: 'Why I built a library of profession-specific writing skills, and why "write professionally" is the wrong instruction to give an LLM.'
-pubDate: 2026-06-16
+pubDate: 2026-06-16T16:02:00
 tags: ['prompt-engineering', 'llm', 'writing']
 heroImage: 'images/blog/human-voice.png'
 thumbnail: 'images/blog/human-voice-square.png'

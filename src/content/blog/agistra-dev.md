@@ -1,7 +1,7 @@
 ---
 title: 'Agistra — Why I Gave My AI Team Roles Instead of a Better Prompt'
 description: 'Why a single LLM in a loop breaks down past toy projects, and what changed when I split the work across four agents with explicit handoff contracts.'
-pubDate: 2026-06-16
+pubDate: 2026-06-16T19:12:00
 tags: ['ai-agents', 'claude', 'multi-agent-systems']
 heroImage: 'images/blog/agistra-dev.png'
 thumbnail: 'images/blog/agistra-dev-square.png'

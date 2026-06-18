@@ -1,7 +1,7 @@
 ---
 title: 'Hello World — Why I rebuilt this site with Astro'
 description: 'A quick look at why I moved from VuePress to Astro for my personal site and what the new setup looks like.'
-pubDate: 2026-06-16
+pubDate: 2026-06-16T00:56:00
 tags: ['astro', 'blogging', 'typescript']
 heroImage: 'images/blog/hello-world-astro.png'
 thumbnail: 'images/blog/hello-world-astro-square.png'

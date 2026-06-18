@@ -1,7 +1,7 @@
 ---
 title: 'Setting Up Unit Test Coverage in VS Code for .NET'
 description: 'A native Testing sidebar, one CLI flag, and a gutter that turns red and green. The whole setup, no extra plumbing.'
-pubDate: 2026-06-16
+pubDate: 2026-06-16T23:59:00
 tags: ['dotnet', 'testing', 'vscode']
 heroImage: 'images/blog/dotnet-test-coverage-vscode.png'
 thumbnail: 'images/blog/dotnet-test-coverage-vscode.png'
