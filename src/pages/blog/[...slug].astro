@@ -42,6 +42,7 @@ const blogPostSchema = JSON.stringify({
 	ogImage={post.data.heroImage}
 	pubDate={post.data.pubDate}
 	jsonLd={blogPostSchema}
+	noindex={post.data.unlisted}
 >
 	<article class="container post section">
 		{

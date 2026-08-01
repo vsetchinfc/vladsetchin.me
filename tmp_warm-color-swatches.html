@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin:0; font-family: 'JetBrains Mono', Consolas, monospace; background:#1a1a1a; }
+  .row { display:flex; }
+  .theme { flex:1; padding:32px; }
+  .dark { background:#0a0e0c; color:#d4ded8; }
+  .light { background:#f7f9f7; color:#16201b; }
+  h2 { margin:0 0 24px; font-size:14px; text-transform:uppercase; letter-spacing:2px; opacity:0.6; }
+  .swatch-group { margin-bottom: 28px; }
+  .label { font-size:13px; margin-bottom:8px; font-weight:bold; }
+  .swatch { display:flex; align-items:center; gap:16px; margin-bottom:10px; }
+  .chip { width:64px; height:64px; border-radius:8px; flex-shrink:0; border:1px solid rgba(255,255,255,0.15); }
+  .meta { font-size:12px; opacity:0.85; }
+  .tag-demo { display:inline-block; padding:4px 10px; border-radius:4px; font-size:12px; font-weight:bold; margin-top:6px; }
+</style>
+</head>
+<body>
+<div class="row">
+  <div class="theme dark">
+    <h2>Dark theme (bg #0a0e0c)</h2>
+
+    <div class="swatch-group">
+      <div class="label">1. Amber — #f0a847</div>
+      <div class="swatch">
+        <div class="chip" style="background:#f0a847"></div>
+        <div class="meta">on dark bg<br><span class="tag-demo" style="background:#f0a847; color:#0a0e0c;">Legacy post</span></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <div class="label">2. Coral — #ff8a65</div>
+      <div class="swatch">
+        <div class="chip" style="background:#ff8a65"></div>
+        <div class="meta">on dark bg<br><span class="tag-demo" style="background:#ff8a65; color:#0a0e0c;">Deprecated</span></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <div class="label">3. Mustard — #e8c468</div>
+      <div class="swatch">
+        <div class="chip" style="background:#e8c468"></div>
+        <div class="meta">on dark bg<br><span class="tag-demo" style="background:#e8c468; color:#0a0e0c;">Featured</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="theme light">
+    <h2>Light theme (bg #f7f9f7)</h2>
+
+    <div class="swatch-group">
+      <div class="label">1. Amber — #b45309</div>
+      <div class="swatch">
+        <div class="chip" style="background:#b45309"></div>
+        <div class="meta">on light bg<br><span class="tag-demo" style="background:#b45309; color:#f7f9f7;">Legacy post</span></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <div class="label">2. Coral — #c1440e</div>
+      <div class="swatch">
+        <div class="chip" style="background:#c1440e"></div>
+        <div class="meta">on light bg<br><span class="tag-demo" style="background:#c1440e; color:#f7f9f7;">Deprecated</span></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <div class="label">3. Mustard — #8a6d1f</div>
+      <div class="swatch">
+        <div class="chip" style="background:#8a6d1f"></div>
+        <div class="meta">on light bg<br><span class="tag-demo" style="background:#8a6d1f; color:#f7f9f7;">Featured</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
