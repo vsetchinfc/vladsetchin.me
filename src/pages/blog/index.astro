@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Icon from "../../components/icons/Icon.astro";
 
-const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+const posts = (
+	await getCollection("blog", ({ data }) => !data.draft && !data.unlisted)
+).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 

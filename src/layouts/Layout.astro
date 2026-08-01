@@ -11,6 +11,7 @@ export interface Props {
 	ogType?: "website" | "article";
 	pubDate?: Date;
 	jsonLd?: string;
+	noindex?: boolean;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
 	ogType = "website",
 	pubDate,
 	jsonLd,
+	noindex = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -67,6 +69,7 @@ const personSchema = JSON.stringify({
 			ogImage={ogImage}
 			ogType={ogType}
 			pubDate={pubDate}
+			noindex={noindex}
 		/>
 
 		<!-- JSON-LD: Person (home page) -->
