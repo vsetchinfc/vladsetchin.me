@@ -12,6 +12,13 @@ const blog = defineCollection({
     heroImageLight: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    // Reachable by direct URL (article page renders normally, incl. build-time
+    // static generation) but hidden from every discovery surface: /blog/, the
+    // homepage latest-posts teaser, RSS, and the sitemap. Also carries
+    // noindex,nofollow. Used for external editorial review before a post goes
+    // fully public. Distinct from `draft`, which excludes the post from the
+    // build entirely (no page, no URL at all).
+    unlisted: z.boolean().default(false),
   }),
 });
 
