@@ -40,7 +40,7 @@ const unlistedBlogSlugs = getUnlistedBlogSlugs();
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://vladsetchin.me',
-	base: '/vladsetchin.me/',
+	base: '/',
 	integrations: [
 		react(),
 		sitemap({
