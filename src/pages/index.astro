@@ -10,7 +10,9 @@ import Contact from "../components/sections/Contact.astro";
 import { SERVICES } from "../data/services";
 import Icon from "../components/icons/Icon.astro";
 
-const latestPosts = (await getCollection("blog", ({ data }) => !data.draft))
+const latestPosts = (
+	await getCollection("blog", ({ data }) => !data.draft && !data.unlisted)
+)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 3);
 
