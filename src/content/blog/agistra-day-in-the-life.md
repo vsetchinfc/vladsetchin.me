@@ -3,6 +3,8 @@ title: 'A Day With My AI Team, Including the Part Where It Was Wrong'
 description: 'A real bug found, fixed, and merged the same day by my AI dev team — and the moment later that day it caught itself being overconfident about the root cause.'
 pubDate: 2026-09-06T12:00:00
 tags: ['ai-agents', 'claude', 'multi-agent-systems', 'agistra']
+heroImage: 'images/blog/agistra-day-in-the-life-hero.png'
+thumbnail: 'images/blog/agistra-day-in-the-life-thumb.png'
 draft: false
 ---
 
