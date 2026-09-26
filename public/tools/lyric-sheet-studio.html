@@ -1,0 +1,638 @@
+<title>Lyric Sheet Studio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root {
+    --ink: #1c1a17;
+    --panel: #242119;
+    --panel-line: #3a362c;
+    --panel-text: #f2ede1;
+    --panel-muted: #a89f8d;
+    --paper: #ffffff;
+    --paper-line: #e6dcc6;
+    --accent: #d98a3d;
+    --accent-deep: #a8611f;
+    --sheet-title: #1c4f9c;
+    --sheet-text: #191919;
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--ink);
+    color: var(--panel-text);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    padding-inline: 16px;
+  }
+
+  .app {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-block: 24px 48px;
+  }
+
+  .topbar {
+    margin-bottom: 24px;
+  }
+
+  .topbar h1 {
+    font-family: "Fraunces", serif;
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    letter-spacing: 0.2px;
+  }
+
+  .topbar p {
+    margin: 0;
+    color: var(--panel-muted);
+    font-size: 14px;
+    max-width: 60ch;
+    line-height: 1.5;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  @media (max-width:900px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .rail {
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: 16px;
+  }
+
+  @media (max-width:900px) {
+    .rail {
+      position: static;
+    }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--panel-muted);
+  }
+
+  .field input[type=text],
+  .field textarea,
+  .field select {
+    background: #1a1813;
+    border: 1px solid var(--panel-line);
+    color: var(--panel-text);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+  }
+
+  .field textarea {
+    min-height: 220px;
+    line-height: 1.5;
+  }
+
+  .field input[type=text]:focus,
+  .field textarea:focus,
+  .field select:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  .hint-text {
+    font-size: 12px;
+    color: var(--panel-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .seg {
+    display: flex;
+    border: 1px solid var(--panel-line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .seg button {
+    flex: 1;
+    background: #1a1813;
+    color: var(--panel-text);
+    border: none;
+    padding: 9px 0;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .seg button+button {
+    border-left: 1px solid var(--panel-line);
+  }
+
+  .seg button.active {
+    background: var(--accent);
+    color: #241503;
+    font-weight: 600;
+  }
+
+  .primary-btn {
+    background: var(--accent);
+    color: #241503;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .primary-btn:hover {
+    background: var(--accent-deep);
+    color: var(--panel-text);
+  }
+
+  .ghost-btn {
+    background: transparent;
+    border: 1px solid var(--panel-line);
+    color: var(--panel-text);
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .save-hint {
+    font-size: 12px;
+    color: var(--accent);
+    line-height: 1.5;
+    margin: 0;
+    background: rgba(217, 138, 61, 0.12);
+    border: 1px solid rgba(217, 138, 61, 0.35);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .frame-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #151310;
+    border: 1px solid var(--panel-line);
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .frame {
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+  }
+
+  .sheet {
+    background: var(--paper);
+    color: var(--sheet-text);
+    display: flex;
+    flex-direction: column;
+    font-family: "IBM Plex Sans", Arial, sans-serif;
+  }
+
+  .sheet h1 {
+    font-family: "IBM Plex Sans", Arial, sans-serif;
+    font-weight: 700;
+    color: var(--sheet-title);
+    text-align: center;
+    margin: 0;
+    letter-spacing: 0.2px;
+  }
+
+  .sheet-body {
+    flex: 1;
+    display: flex;
+    min-height: 0;
+  }
+
+  .sheet-body.cols-1 {
+    justify-content: center;
+  }
+
+  .sheet-body.cols-1 #col1 {
+    flex: 0 0 auto;
+    width: max-content;
+    max-width: 90%;
+  }
+
+  .sheet-body.cols-1 #col2 {
+    display: none;
+  }
+
+  .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .stanza {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .line {
+    text-align: left;
+    font-weight: 400;
+    white-space: pre-wrap;
+  }
+
+  .line.chorus {
+    font-style: italic;
+    color: var(--accent-deep);
+  }
+
+  .checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .checkbox-field input {
+    width: 16px;
+    height: 16px;
+  }
+
+  .checkbox-field label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--panel-text);
+  }
+
+  .captured {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--panel-line);
+  }
+
+  .actions-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
+
+<div class="app">
+  <div class="topbar">
+    <h1>Lyric Sheet Studio</h1>
+    <p>Paste your own words, pick a column layout and your iPad size, and the page auto-sizes the type to fill one
+      screen. Everything runs locally in this tab — nothing you type leaves your browser. When it looks right, press and
+      hold the rendered image to save it.</p>
+  </div>
+
+  <div class="layout">
+    <aside class="rail">
+      <div class="field">
+        <label for="titleInput">Song title</label>
+        <input type="text" id="titleInput" value="Your Song Title">
+      </div>
+
+      <div class="field">
+        <label for="lyricsInput">Lyrics</label>
+        <textarea id="lyricsInput">**Lead:** Verse line one
+**Lead:** Verse line two
+**Harmony:** Verse line three
+
+* Chorus line one
+* Chorus line two
+
+**Lead:** Verse line one
+**Both:** Verse line two
+
+* Chorus line one
+* Chorus line two</textarea>
+        <p class="hint-text">Blank line = new verse/chorus block. Start a line with <strong>* </strong> for chorus
+          styling. Wrap words in <strong>**double asterisks**</strong> to bold them — handy for marking who sings which
+          part.</p>
+      </div>
+
+      <div class="field">
+        <label>Columns</label>
+        <div class="seg" id="colSeg">
+          <button type="button" data-cols="1">1 column</button>
+          <button type="button" data-cols="2" class="active">2 columns</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="deviceSelect">Screen size</label>
+        <select id="deviceSelect">
+          <option value="mini">iPad mini (1488 × 2266)</option>
+          <option value="std" selected>iPad 10.9" (1640 × 2360)</option>
+          <option value="pro11">iPad Pro 11" (1668 × 2388)</option>
+          <option value="pro129">iPad Pro 12.9" (2048 × 2732)</option>
+          <option value="a4">A4 print (2480 × 3508)</option>
+        </select>
+      </div>
+
+      <div class="checkbox-field">
+        <input type="checkbox" id="chorusToggle">
+        <label for="chorusToggle">Emphasize chorus lines (italic, color)</label>
+      </div>
+
+      <button type="button" class="primary-btn" id="saveBtn">Render image to save</button>
+      <p class="save-hint" id="saveHint" hidden>Image ready below — press and hold it, then choose "Save to Photos"
+        (iPad) or "Save image" (desktop).</p>
+    </aside>
+
+    <main class="stage">
+      <div class="frame-wrap">
+        <div class="frame" id="frame">
+          <div class="sheet" id="sheet">
+            <h1 id="sheetTitle"></h1>
+            <div class="sheet-body cols-2" id="sheetBody">
+              <div class="col" id="col1"></div>
+              <div class="col" id="col2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="actions-row" id="capturedRow" hidden>
+        <img id="capturedImg" class="captured" alt="Rendered lyric sheet, ready to save">
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var DEVICES = {
+      mini: { w: 1488, h: 2266 },
+      std: { w: 1640, h: 2360 },
+      pro11: { w: 1668, h: 2388 },
+      pro129: { w: 2048, h: 2732 },
+      a4: { w: 2480, h: 3508 }
+    };
+
+    var titleInput = document.getElementById('titleInput');
+    var lyricsInput = document.getElementById('lyricsInput');
+    var deviceSelect = document.getElementById('deviceSelect');
+    var colSeg = document.getElementById('colSeg');
+    var sheet = document.getElementById('sheet');
+    var sheetTitle = document.getElementById('sheetTitle');
+    var sheetBody = document.getElementById('sheetBody');
+    var col1 = document.getElementById('col1');
+    var col2 = document.getElementById('col2');
+    var frame = document.getElementById('frame');
+    var frameWrap = document.querySelector('.frame-wrap');
+    var saveBtn = document.getElementById('saveBtn');
+    var saveHint = document.getElementById('saveHint');
+    var capturedRow = document.getElementById('capturedRow');
+    var capturedImg = document.getElementById('capturedImg');
+
+    var state = { cols: 2, device: 'std', chorus: false };
+    var chorusToggle = document.getElementById('chorusToggle');
+
+    function loadDraft() {
+      try {
+        var raw = localStorage.getItem('lyric-sheet-draft');
+        if (!raw) return;
+        var d = JSON.parse(raw);
+        if (d.title) titleInput.value = d.title;
+        if (d.lyrics) lyricsInput.value = d.lyrics;
+        if (d.cols) state.cols = d.cols;
+        if (d.device) state.device = d.device;
+        if (typeof d.chorus === 'boolean') state.chorus = d.chorus;
+      } catch (e) { }
+    }
+    function saveDraft() {
+      try {
+        localStorage.setItem('lyric-sheet-draft', JSON.stringify({
+          title: titleInput.value, lyrics: lyricsInput.value,
+          cols: state.cols, device: state.device, chorus: state.chorus
+        }));
+      } catch (e) { }
+    }
+
+    function getBlocks(text) {
+      return text.split(/\n\s*\n/)
+        .map(function (block) {
+          return block.split('\n').map(function (l) { return l.trim(); }).filter(function (l) { return l.length; });
+        })
+        .filter(function (block) { return block.length; });
+    }
+
+    function renderInline(container, text) {
+      var parts = text.split(/\*\*(.+?)\*\*/g);
+      parts.forEach(function (part, i) {
+        if (part === '') return;
+        if (i % 2 === 1) {
+          var strong = document.createElement('strong');
+          strong.textContent = part;
+          container.appendChild(strong);
+        } else {
+          container.appendChild(document.createTextNode(part));
+        }
+      });
+    }
+
+    function makeStanza(lines) {
+      var stanza = document.createElement('div');
+      stanza.className = 'stanza';
+      lines.forEach(function (l) {
+        var isChorus = /^\*(?!\*)\s/.test(l);
+        var text = isChorus ? l.replace(/^\*(?!\*)\s/, '') : l;
+        var div = document.createElement('div');
+        div.className = 'line' + (isChorus && state.chorus ? ' chorus' : '');
+        renderInline(div, text);
+        stanza.appendChild(div);
+      });
+      return stanza;
+    }
+
+    function renderColumns() {
+      var blocks = getBlocks(lyricsInput.value);
+      col1.innerHTML = '';
+      col2.innerHTML = '';
+      sheetBody.className = 'sheet-body cols-' + state.cols;
+
+      if (state.cols === 1) {
+        blocks.forEach(function (b) { col1.appendChild(makeStanza(b)); });
+        return;
+      }
+
+      if (blocks.length > 1) {
+        var total = blocks.reduce(function (sum, b) { return sum + b.length; }, 0);
+        var target = total / 2;
+        var running = 0, bestIdx = 0, bestDiff = Infinity;
+        blocks.forEach(function (b, i) {
+          running += b.length;
+          var diff = Math.abs(running - target);
+          if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
+        });
+        if (bestIdx === blocks.length - 1) bestIdx = Math.max(0, bestIdx - 1);
+
+        blocks.slice(0, bestIdx + 1).forEach(function (b) { col1.appendChild(makeStanza(b)); });
+        blocks.slice(bestIdx + 1).forEach(function (b) { col2.appendChild(makeStanza(b)); });
+      } else {
+        // No blank lines at all (one continuous block) — split by line count instead.
+        var lines = blocks[0] || [];
+        if (lines.length > 1) {
+          var mid = Math.ceil(lines.length / 2);
+          col1.appendChild(makeStanza(lines.slice(0, mid)));
+          col2.appendChild(makeStanza(lines.slice(mid)));
+        } else if (lines.length === 1) {
+          col1.appendChild(makeStanza(lines));
+        }
+      }
+    }
+
+    function fits() {
+      var cols = state.cols === 1 ? [col1] : [col1, col2];
+      return cols.every(function (c) { return c.scrollHeight <= c.clientHeight + 2; });
+    }
+
+    function setFontSize(px) {
+      sheet.style.setProperty('--fs', px + 'px');
+      var lines = sheet.querySelectorAll('.line');
+      for (var i = 0; i < lines.length; i++) { lines[i].style.fontSize = px + 'px'; lines[i].style.lineHeight = 1.5; }
+      sheetTitle.style.fontSize = Math.round(px * 1.55) + 'px';
+      var stanzaGap = Math.round(px * 1.5);
+      col1.style.gap = stanzaGap + 'px';
+      col2.style.gap = stanzaGap + 'px';
+    }
+
+    function autoFit() {
+      var d = DEVICES[state.device];
+      var maxPx = Math.min(40, Math.round(d.w * 0.045));
+      var lo = 12, hi = maxPx, best = 12;
+      for (var i = 0; i < 24 && lo <= hi; i++) {
+        var mid = Math.floor((lo + hi) / 2);
+        setFontSize(mid);
+        if (fits()) { best = mid; lo = mid + 1; } else { hi = mid - 1; }
+      }
+      setFontSize(best);
+    }
+
+    function sizeFrame() {
+      var d = DEVICES[state.device];
+      sheet.style.width = d.w + 'px';
+      sheet.style.height = d.h + 'px';
+      var pad = Math.round(d.w * 0.055);
+      sheet.style.padding = pad + 'px';
+      sheetTitle.style.marginBottom = Math.round(pad * 0.6) + 'px';
+      sheetBody.style.gap = Math.round(pad * 0.9) + 'px';
+
+      var available = Math.min(frameWrap.clientWidth - 40, 460);
+      var scale = available / d.w;
+      sheet.style.transform = 'scale(' + scale + ')';
+      sheet.style.transformOrigin = 'top left';
+      frame.style.width = Math.round(d.w * scale) + 'px';
+      frame.style.height = Math.round(d.h * scale) + 'px';
+      frame.dataset.scale = scale;
+    }
+
+    function render() {
+      sheetTitle.textContent = titleInput.value || ' ';
+      sizeFrame();
+      renderColumns();
+      autoFit();
+      saveDraft();
+    }
+
+    colSeg.addEventListener('click', function (e) {
+      var btn = e.target.closest('button[data-cols]');
+      if (!btn) return;
+      state.cols = Number(btn.dataset.cols);
+      Array.prototype.forEach.call(colSeg.querySelectorAll('button'), function (b) {
+        b.classList.toggle('active', b === btn);
+      });
+      render();
+    });
+
+    deviceSelect.addEventListener('change', function () {
+      state.device = deviceSelect.value;
+      render();
+    });
+
+    titleInput.addEventListener('input', render);
+    lyricsInput.addEventListener('input', render);
+    chorusToggle.addEventListener('change', function () {
+      state.chorus = chorusToggle.checked;
+      render();
+    });
+    window.addEventListener('resize', render);
+
+    function measureTrimmedHeight(d) {
+      var pad = Math.round(d.w * 0.055);
+      var sheetRect = sheet.getBoundingClientRect();
+      var cols = state.cols === 1 ? [col1] : [col1, col2];
+      var maxBottom = 0;
+      cols.forEach(function (c) {
+        if (c.lastElementChild) {
+          var bottom = c.lastElementChild.getBoundingClientRect().bottom - sheetRect.top;
+          if (bottom > maxBottom) maxBottom = bottom;
+        }
+      });
+      return maxBottom ? Math.min(d.h, Math.ceil(maxBottom) + pad) : d.h;
+    }
+
+    saveBtn.addEventListener('click', function () {
+      var originalTransform = sheet.style.transform;
+      sheet.style.transform = 'none';
+      var d = DEVICES[state.device];
+      var trimmedHeight = measureTrimmedHeight(d);
+      html2canvas(sheet, { width: d.w, height: trimmedHeight, scale: 1, backgroundColor: '#faf6ec' }).then(function (canvas) {
+        sheet.style.transform = originalTransform;
+        capturedImg.src = canvas.toDataURL('image/png');
+        capturedRow.hidden = false;
+        saveHint.hidden = false;
+        capturedImg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }).catch(function () {
+        sheet.style.transform = originalTransform;
+      });
+    });
+
+    loadDraft();
+    colSeg.querySelectorAll('button').forEach(function (b) {
+      b.classList.toggle('active', Number(b.dataset.cols) === state.cols);
+    });
+    deviceSelect.value = state.device;
+    chorusToggle.checked = state.chorus;
+    render();
+  })();
+</script>
