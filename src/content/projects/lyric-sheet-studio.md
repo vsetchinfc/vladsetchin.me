@@ -19,7 +19,3 @@ I wanted a fast way to format lyrics for a physical or on-screen sheet: pick a d
 - **Shrink-wrapped single-column centering** — in one-column mode the text block sizes itself to its own longest line and centers as a unit, keeping each line left-aligned rather than individually centering ragged text.
 - **Lightweight markup** — blank lines start a new verse/chorus block, a leading `*` marks a chorus line for italic/color styling, and `**double asterisks**` bold a word or name (handy for marking who sings which part).
 - Runs entirely client-side — nothing typed leaves the browser; the draft persists to `localStorage` between visits.
-
-## What I learned
-
-Two rounds of "it's still not centered" turned out to be the same class of bug twice: a CSS selector written as `.col2` when the element only had `id="col2"`, silently matching nothing. Cheap to write, easy to miss without actually rendering the page — worth double-checking a fix against a real screenshot rather than the CSS in isolation.
